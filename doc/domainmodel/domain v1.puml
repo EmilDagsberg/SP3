@@ -5,53 +5,63 @@ object StreamingService
 
 object Media
 
-object Movies
-
+object MainMenu
+object Startmenu
+object Movie
 object Series
-
-object GenreCategory
-
+object Genre
 object Crime
-
 object War
-
 object Drama
-
 object Family
-
 object Romance
-
 object SciFi
-
 object Seasons
-
 object Episodes
-
 object ReleaseYear
-
 object Rating
-
 object User
-
-object Password
-
-object List
-
+User : username
+User : password
 object Watchlist
-
 object Watchedlist
 
-object Startmenu
 
-object MainMenu
 
-object Filereader
 
+
+object FileIO
+FileIO : file
 object TextUI
 
-object File
 
-object Error
+
+
+StreamingService *-- Media
+StreamingService *-- MainMenu
+StreamingService *-- Startmenu
+StreamingService *-- User
+Media <|-- Movie
+Media <|-- Series
+Movie *-- Genre
+Series *-- Genre
+Genre <|-- Crime
+Genre <|-- War
+Genre <|-- Drama
+Genre <|-- Family
+Genre <|-- Romance
+Genre <|-- SciFi
+Series *-- Seasons
+Seasons *-- Episodes
+Media *-- Rating
+Media *-- ReleaseYear
+User *-- Watchedlist
+User *-- Watchlist
+Watchlist *-- Media
+Watchedlist *-- Media
+
+
+
 
 
 
