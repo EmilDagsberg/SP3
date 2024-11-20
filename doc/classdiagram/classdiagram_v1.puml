@@ -1,0 +1,39 @@
+@startuml
+
+class Main {
++ static void main(String[] args)
+}
+
+class StreamingService{
+- String name
+- ArrayList<User> users
+}
+
+class User {
+- String username
+- String password
+}
+
+
+
+
+
+class FileIO {
++ ArrayList<String> readMovieData(String path)
++ ArrayList<String readSeriesData(String path)
++ void saveWatchlistData
++ void saveWatchedlistData
+}
+
+class TextUI {
+- Scanner scanner
++ void displayMsg(String msg)
++ int promptNumeric(String msg)
++ String promptText(String msg)
+}
+
+Main *-- StreamingService
+StreamingService *-- FileIO
+StreamingService *-- TextUI
+
+@enduml
