@@ -1,0 +1,58 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+object StreamingService
+
+object Media
+
+object Movies
+
+object Series
+
+object GenreCategory
+
+object Crime
+
+object War
+
+object Drama
+
+object Family
+
+object Romance
+
+object SciFi
+
+object Seasons
+
+object Episodes
+
+object ReleaseYear
+
+object Rating
+
+object User
+
+object Password
+
+object List
+
+object Watchlist
+
+object Watchedlist
+
+object Startmenu
+
+object MainMenu
+
+object Filereader
+
+object TextUI
+
+object File
+
+object Error
+
+
+
+@enduml
