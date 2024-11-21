@@ -20,8 +20,8 @@ class User {
 
 
 class FileIO {
-+ ArrayList<String> readMovieData
-+ ArrayList<String readSeriesData
+- ArrayList<String> readMovieData
+- ArrayList<String readSeriesData
 + void saveMovieData(String path)
 + void saveSeriesData(String path)
 }
