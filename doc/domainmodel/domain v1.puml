@@ -6,8 +6,8 @@ object StreamingService
 
 object Media
 
-object MainMenu
-object StartMenu
+object HomeMenu
+object LoginMenu
 object Movie
 object Series
 object Genre
@@ -39,8 +39,8 @@ object TextUI
 
 
 StreamingService *-- Media
-StreamingService *-- MainMenu
-StreamingService *-- StartMenu
+StreamingService *-- HomeMenu
+StreamingService *-- LoginMenu
 StreamingService *-- User
 Media <|-- Movie
 Media <|-- Series
@@ -53,6 +53,7 @@ User *-- PrevWatched
 User *-- WatchList
 WatchList *-- Media
 PrevWatched *-- Media
+
 
 
 
