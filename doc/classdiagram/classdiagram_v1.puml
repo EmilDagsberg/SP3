@@ -26,21 +26,12 @@ class StreamingService{
 class User {
 - String username
 - String password
-- WatchList watchList
-- PrevWatched prevWatched
-
-}
-
-class WatchList{
 - Collection<Media> watchList
-- void getList()
+- PrevWatched prevWatched
+- Collection<Media> prevWatched
+
 }
 
-class PrevWatched{
-- Collection<Media> prevWatched
-- void getList()
-- void addMovie()
-}
 
 abstract class Media{
 - String mediaTitle
@@ -81,11 +72,8 @@ Main *-- StreamingService
 StreamingService *-- User
 StreamingService *-- FileIO
 StreamingService *-- TextUI
-User *-- WatchList
-User *-- PrevWatched
-Media *-- Movie
-Media *-- Series
+Media <|-- Movie
+Media <|-- Series
 StreamingService *-- Media
-WatchList *-- Media
-PrevWatched *-- Media
+User *-- Media
 @enduml
