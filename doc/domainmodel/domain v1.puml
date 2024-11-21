@@ -7,18 +7,18 @@ object StreamingService
 object Media
 
 object MainMenu
-object Startmenu
+object StartMenu
 object Movie
 object Series
 object Genre
-object Crime
-object War
-object Drama
-object Family
-object Romance
-object SciFi
+Genre : crime
+Genre : war
+Genre : drama
+Genre : family
+Genre : romance
+Genre : sciFi
 object Seasons
-object Episodes
+Seasons : episodes
 object ReleaseYear
 object Rating
 object User
@@ -40,20 +40,13 @@ object TextUI
 
 StreamingService *-- Media
 StreamingService *-- MainMenu
-StreamingService *-- Startmenu
+StreamingService *-- StartMenu
 StreamingService *-- User
 Media <|-- Movie
 Media <|-- Series
 Movie *-- Genre
 Series *-- Genre
-Genre <|-- Crime
-Genre <|-- War
-Genre <|-- Drama
-Genre <|-- Family
-Genre <|-- Romance
-Genre <|-- SciFi
 Series *-- Seasons
-Seasons *-- Episodes
 Media *-- Rating
 Media *-- ReleaseYear
 User *-- PrevWatched
