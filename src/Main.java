@@ -1,5 +1,7 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        StreamingService s = new StreamingService("Netflix");
+        s.startStreamingService();
+
     }
 }

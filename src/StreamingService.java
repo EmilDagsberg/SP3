@@ -6,7 +6,7 @@ public class StreamingService {
     String movieDataPath;
     String seriesDataPath;
     String userDataPath;
-    ArrayList<User> users;
+    //ArrayList<User> users;
     TextUI ui = new TextUI();
     FileIO io = new FileIO();
 
@@ -15,7 +15,7 @@ public class StreamingService {
         this.movieDataPath = "data/film.txt";
         this.seriesDataPath = "data/serier.txt";
         this.userDataPath = "data/userData.csv";
-        this.users = new ArrayList<User>();
+        //this.users = new ArrayList<User>();
     }
 
     void startStreamingService() {
@@ -28,8 +28,10 @@ public class StreamingService {
 
         if(choice == 1) {
             createUser();
+            homeMenu();
+        } else if(choice == 2) {
+            loadUser();
         }
-
     }
 
     void createUser() {
@@ -40,6 +42,33 @@ public class StreamingService {
     }
 
     public void addUser(User u) {
-        this.users.add(u);
+        FileIO.SaveUserData(u.toString(), this.userDataPath, "username, password");
+    }
+
+    public void loadUser() {
+        ArrayList<String> userData = io.readData(this.userDataPath);
+        ArrayList<String> usernames = new ArrayList<>();
+        ArrayList<String> passwords = new ArrayList<>();
+        String password = "";
+        if(!userData.isEmpty()) {
+            for (String s : userData) {
+                String[] info = s.split(", ");
+                usernames.add(info[0]);
+                passwords.add(info[1]);
+            }
+            if(usernames.contains((ui.promptText("Type username:"))) && passwords.contains(ui.promptText("Type password;"))) {
+                    homeMenu();
+                } else {
+                    ui.displayMsg("Username or password is wrong. Please try again.");
+                    loadUser();
+                }
+        } else {
+            ui.displayMsg("Sorry, but we don't have any users yet. So please make one");
+            createUser();
+        }
+    }
+
+    public void homeMenu() {
+
     }
 }

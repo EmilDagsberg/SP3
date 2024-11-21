@@ -25,13 +25,10 @@ public class FileIO {
         return data;
     }
 
-    public static void userData(List<String> items, String path, String header) {
+    public static void SaveUserData(String userAsText, String path, String header) {
         try {
-            FileWriter writer = new FileWriter(path);
-            writer.write(header + "\n"); //Giv csv filen en header
-            for (String s : items) {
-                writer.write(s + "\n"); //"username, password";
-            }
+            FileWriter writer = new FileWriter(path, true);
+                writer.write(userAsText + "\n"); //"username, password";
             writer.close();
         } catch (IOException e) {
             System.out.println("something went wrong when writing to file");
