@@ -7,15 +7,18 @@ class Main {
 
 class StreamingService{
 - String name
+- String movieDataPath
+- String seriesDataPath
 - Media[] media
 - Collection<User> users
 - TextUI ui
 - FileIO io
 - String[] movieData
 - String[] seriesData
-+ StreamingService(String name, String movieDataPath, String seriesDataPath)
++ StreamingService(String name)
 - void startStreamingService()
 - void createUser(String username, String password)
+- void addUser(User u)
 - void loadUserData()
 - void homeMenu()
 - void createMovies(String movieDataPath)
