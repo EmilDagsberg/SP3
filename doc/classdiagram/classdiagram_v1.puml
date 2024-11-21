@@ -9,6 +9,7 @@ class StreamingService{
 - String name
 - String movieDataPath
 - String seriesDataPath
+- String userDataPath
 - Media[] media
 - Collection<User> users
 - TextUI ui
@@ -17,7 +18,7 @@ class StreamingService{
 - String[] seriesData
 + StreamingService(String name)
 - void startStreamingService()
-- void createUser(String username, String password)
+- void createUser()
 - void addUser(User u)
 - void loadUserData()
 - void homeMenu()
@@ -32,6 +33,8 @@ class User {
 - Collection<Media> watchList
 - PrevWatched prevWatched
 - Collection<Media> prevWatched
++ User(String username, String password)
++ String toString()
 
 }
 

@@ -30,7 +30,7 @@ public class StreamingService {
             createUser();
             homeMenu();
         } else if(choice == 2) {
-            loadUser();
+            loadUserData();
         }
     }
 
@@ -45,7 +45,7 @@ public class StreamingService {
         FileIO.SaveUserData(u.toString(), this.userDataPath, "username, password");
     }
 
-    public void loadUser() {
+    public void loadUserData() {
         ArrayList<String> userData = io.readData(this.userDataPath);
         ArrayList<String> usernames = new ArrayList<>();
         ArrayList<String> passwords = new ArrayList<>();
@@ -60,7 +60,7 @@ public class StreamingService {
                     homeMenu();
                 } else {
                     ui.displayMsg("Username or password is wrong. Please try again.");
-                    loadUser();
+                    loadUserData();
                 }
         } else {
             ui.displayMsg("Sorry, but we don't have any users yet. So please make one");
