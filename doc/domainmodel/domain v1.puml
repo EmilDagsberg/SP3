@@ -56,10 +56,9 @@ Series *-- Seasons
 Seasons *-- Episodes
 Media *-- Rating
 Media *-- ReleaseYear
-User *-- Watchedlist
-User *-- Watchlist
-Watchlist *-- Media
-Watchedlist *-- Media
+User *-- PrevWatched
+User *-- WatchList
+PrevWatched *-- Media
 
 
 
