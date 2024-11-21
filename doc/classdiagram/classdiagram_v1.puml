@@ -13,13 +13,13 @@ class StreamingService{
 - FileIO io
 - String[] movieData
 - String[] seriesData
-+ StreamingService(String name, String[] movieData, String[] seriesData)
++ StreamingService(String name, String movieDataPath, String seriesDataPath)
 - void startStreamingService()
 - void createUser(String username, String password)
 - void loadUserData()
 - void homeMenu()
-- void createMovies(String[] movieData)
-- void createSeries(String[] seriesData)
+- void createMovies(String movieDataPath)
+- void createSeries(String[ seriesDataPath)
 
 }
 
