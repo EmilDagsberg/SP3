@@ -2,13 +2,15 @@
 !pragma layout smetana
 
 
+!pragma layout smetana
+
 class Main {
 + static void main(String[] args)
 }
 
 class StreamingService{
 - String name
-- ArrayList<User> users
+- Collection<User> users
 - TextUI ui
 - FileIO io
 + StreamingService(String name)
@@ -27,28 +29,30 @@ class User {
 }
 
 class WatchList{
-- ArrayList<Media> watchList
+- Collection<Media> watchList
 }
 
 class PrevWatched{
-- ArrayList<Media> prevWatched
+- Collection<Media> prevWatched
 }
 
 abstract class Media{
-
+- String mediaTitle
+- double rating
+- String genre
+- String releaseYear
+- String seasonAndEpisodes
 }
 
 class Movie{
-
 }
 
 class Series{
-
 }
 
 class FileIO {
-- ArrayList<String> readMovieData
-- ArrayList<String readSeriesData
+- Collection<String> readMovieData
+- Collection<String readSeriesData
 + void saveMovieData(String path)
 + void saveSeriesData(String path)
 }
