@@ -1,7 +1,6 @@
 @startuml
 !pragma layout smetana
 
-!pragma layout smetana
 
 class Main {
 + static void main(String[] args)
@@ -22,11 +21,30 @@ class StreamingService{
 class User {
 - String username
 - String password
+- WatchList watchList
+- PrevWatched prevWatched
+
 }
 
+class WatchList{
+- ArrayList<Media> watchList
+}
 
+class PrevWatched{
+- ArrayList<Media> prevWatched
+}
 
+abstract class Media{
 
+}
+
+class Movie{
+
+}
+
+class Series{
+
+}
 
 class FileIO {
 - ArrayList<String> readMovieData
@@ -47,4 +65,11 @@ Main *-- StreamingService
 StreamingService *-- User
 StreamingService *-- FileIO
 StreamingService *-- TextUI
+User *-- WatchList
+User *-- PrevWatched
+Media *-- Movie
+Media *-- Series
+StreamingService *-- Media
+WatchList *-- Media
+PrevWatched *-- Media
 @enduml
