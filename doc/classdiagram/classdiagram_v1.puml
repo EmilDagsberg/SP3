@@ -1,23 +1,26 @@
 @startuml
 !pragma layout smetana
 
-
-!pragma layout smetana
-
 class Main {
 + static void main(String[] args)
 }
 
 class StreamingService{
 - String name
+- Media[] media
 - Collection<User> users
 - TextUI ui
 - FileIO io
-+ StreamingService(String name)
+- String[] movieData
+- String[] seriesData
++ StreamingService(String name, String[] movieData, String[] seriesData)
 - void startStreamingService()
 - void createUser(String username, String password)
 - void loadUserData()
 - void homeMenu()
+- void createMovies(String[] movieData)
+- void createSeries(String[] seriesData)
+
 }
 
 class User {
@@ -30,10 +33,13 @@ class User {
 
 class WatchList{
 - Collection<Media> watchList
+- void getList()
 }
 
 class PrevWatched{
 - Collection<Media> prevWatched
+- void getList()
+- void addMovie()
 }
 
 abstract class Media{
@@ -42,12 +48,18 @@ abstract class Media{
 - String genre
 - String releaseYear
 - String seasonAndEpisodes
++Media(String mediaTitle, String releaseYear, String genre, double rating, String seasonAndEpisodes)
 }
 
 class Movie{
++ Movie(String mediaTitle, String releaseYear, String genre, double rating)
+'metode der loader liste over film?
+
 }
 
 class Series{
++Series(String mediaTitle, String releaseYear, String genre, double rating, String seasonAndEpisodes)
+'metode der loader liste over serier?
 }
 
 class FileIO {
