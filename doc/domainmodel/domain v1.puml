@@ -24,7 +24,7 @@ object Rating
 object User
 User : username
 User : password
-object Watchlist
+object WatchList
 object PrevWatched
 
 
@@ -58,6 +58,7 @@ Media *-- Rating
 Media *-- ReleaseYear
 User *-- PrevWatched
 User *-- WatchList
+WatchList *-- Media
 PrevWatched *-- Media
 
 
