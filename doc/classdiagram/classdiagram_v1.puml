@@ -31,6 +31,7 @@ class TextUI {
 + void displayMsg(String msg)
 + int promptNumeric(String msg)
 + String promptText(String msg)
++ boolean promptBoolean (String msg)
 }
 
 Main *-- StreamingService
