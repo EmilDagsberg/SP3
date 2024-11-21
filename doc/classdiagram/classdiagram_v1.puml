@@ -35,6 +35,7 @@ class TextUI {
 }
 
 Main *-- StreamingService
+StreamingService *-- User
 StreamingService *-- FileIO
 StreamingService *-- TextUI
 
