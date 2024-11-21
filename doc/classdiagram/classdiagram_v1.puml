@@ -20,10 +20,10 @@ class User {
 
 
 class FileIO {
-+ ArrayList<String> readMovieData(String path)
-+ ArrayList<String readSeriesData(String path)
-+ void saveWatchlistData
-+ void saveWatchedlistData
++ ArrayList<String> readMovieData
++ ArrayList<String readSeriesData
++ void saveMovieData(String path)
++ void saveSeriesData(String path)
 }
 
 class TextUI {
