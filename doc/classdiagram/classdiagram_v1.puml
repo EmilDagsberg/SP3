@@ -8,6 +8,13 @@ class Main {
 class StreamingService{
 - String name
 - ArrayList<User> users
+- TextUI ui
+- FileIO io
++ StreamingService(String name)
+- void startStreamingService()
+- void createUser(String username, String password)
+- void loadUserData()
+- void homeMenu()
 }
 
 class User {
