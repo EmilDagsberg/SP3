@@ -7,19 +7,15 @@ class Main {
 
 class StreamingService{
 - String name
-- String movieDataPath
-- String seriesDataPath
-- String userDataPath
 - Media[] media
 - Collection<User> users
 - TextUI ui
 - FileIO io
-- String[] movieData
+- ArrayList<String> movieData
 - String[] seriesData
-+ StreamingService(String name)
++ StreamingService(String name, String movieDataPath, String seriesDataPath)
 - void startStreamingService()
-- void createUser()
-- void addUser(User u)
+- void createUser(String username, String password)
 - void loadUserData()
 - void homeMenu()
 - void createMovies(String movieDataPath)
@@ -33,8 +29,6 @@ class User {
 - Collection<Media> watchList
 - PrevWatched prevWatched
 - Collection<Media> prevWatched
-+ User(String username, String password)
-+ String toString()
 
 }
 

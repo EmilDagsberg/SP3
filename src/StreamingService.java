@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -6,6 +7,7 @@ public class StreamingService {
     String movieDataPath;
     String seriesDataPath;
     String userDataPath;
+    ArrayList<Movie> movies = new ArrayList<Movie>();
     //ArrayList<User> users;
     TextUI ui = new TextUI();
     FileIO io = new FileIO();
@@ -69,6 +71,27 @@ public class StreamingService {
     }
 
     public void homeMenu() {
+        createMovies();
+    }
 
+    public void createMovies(){
+        try {
+            ArrayList<String> movieData = io.readData(movieDataPath);
+            String title;
+            int releaseYear;
+            String genres;
+            Double rating;
+            for (String s : movieData) {
+                String[] data = s.split(";"); //splits a line into 4 Strings containing Title/ReleaseYear/Genres/Rating"
+                title = data[0];
+                releaseYear = Integer.valueOf(data[1]);
+                genres = (data[2]);
+                rating = Double.valueOf(data[3]);
+                Movie newMedia = new Movie(title, releaseYear, genres, rating);
+                movies.add(newMedia);
+            }
+        }catch (FileNotFoundException e){
+            System.out.println("File not found");
+        }
     }
 }
