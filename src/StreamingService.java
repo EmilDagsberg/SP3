@@ -21,7 +21,7 @@ public class StreamingService {
 
     void startStreamingService() {
         ui.displayMsg("Welcome to " + this.name);
-        ArrayList<String> userData = io.readData(this.userDataPath); // Læser data i userData filen.
+        ArrayList<String> userData = io.readUserData(this.userDataPath); // Læser data i userData filen.
 
         ui.displayMsg("Make new user? Press 1");
         ui.displayMsg(("Login on existing user? Press 2"));
@@ -52,7 +52,7 @@ public class StreamingService {
     }
 
     public void loadUserData() {
-        ArrayList<String> userData = io.readData(this.userDataPath);
+        ArrayList<String> userData = io.readUserData(this.userDataPath);
         ArrayList<String> usernames = new ArrayList<>(); // Filen af users blev læst og bliver fordelt. Username kommer i et array.
         ArrayList<String> passwords = new ArrayList<>(); // passwords kommer i et array.
         if (!userData.isEmpty()) {

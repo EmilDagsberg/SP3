@@ -5,15 +5,15 @@ public abstract class Media {
     protected String releaseYear;
     protected String seasonsAndEpisodes;
 
-    public Media(String mediaTitle,double rating,String genre,String releaseYear,String seasonsAndEpisodes){
+    public Media(String mediaTitle, String releaseYear, String genre, double rating, String seasonsAndEpisodes){
         this.mediaTitle = mediaTitle;
-        this.rating = rating;
-        this.genre = genre;
         this.releaseYear = releaseYear;
+        this.genre = genre;
+        this.rating = rating;
         this.seasonsAndEpisodes = seasonsAndEpisodes;
     }
 
-    public Media(String mediaTitle,double rating,String genre,String releaseYear){
+    public Media(String mediaTitle,String releaseYear, String genre, double rating){
         this.mediaTitle = mediaTitle;
         this.rating = rating;
         this.genre = genre;

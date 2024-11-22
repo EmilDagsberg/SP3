@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class FileIO {
 
-    public static ArrayList<String> readData(String path) {
+    public static ArrayList<String> readUserData(String path) {
         ArrayList<String> data = new ArrayList();
         File file = new File(path);
         try {
