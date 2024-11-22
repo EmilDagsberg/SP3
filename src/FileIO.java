@@ -27,7 +27,7 @@ public class FileIO {
 
     public static ArrayList<Movie> readMovieData(String path) {
         String title;
-        int releaseYear;
+        String releaseYear;
         String genres;
         Double rating;
         ArrayList<Movie> movieData = new ArrayList();
@@ -39,7 +39,7 @@ public class FileIO {
                 String line = scan.nextLine(); // "title; release year; etc."
                 String[] data = line.split(";"); //splits a line into 4 Strings containing Title/ReleaseYear/Genres/Rating"
                 title = data[0];
-                releaseYear = Integer.valueOf(data[1]);
+                releaseYear = data[1];
                 genres = (data[2]);
                 rating = Double.valueOf(data[3]);
                 Movie newMovie = new Movie(title, releaseYear, genres, rating);

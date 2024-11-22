@@ -27,10 +27,10 @@ public class StreamingService {
         ui.displayMsg(("Login on existing user? Press 2"));
         int choice = ui.promptNumeric("Type 1 or 2.");
 
-        if(choice == 1) { // Brugernes valg bliver gemt og tjekkes om hvilket nummer det er.
+        if (choice == 1) { // Brugernes valg bliver gemt og tjekkes om hvilket nummer det er.
             createUser();
             homeMenu();
-        } else if(choice == 2) {
+        } else if (choice == 2) {
             loadUserData();
         } else {
             ui.displayMsg("Sorry but that choice is invalid");
@@ -55,21 +55,21 @@ public class StreamingService {
         ArrayList<String> userData = io.readData(this.userDataPath);
         ArrayList<String> usernames = new ArrayList<>(); // Filen af users blev læst og bliver fordelt. Username kommer i et array.
         ArrayList<String> passwords = new ArrayList<>(); // passwords kommer i et array.
-        if(!userData.isEmpty()) {
+        if (!userData.isEmpty()) {
             for (String s : userData) {
                 String[] info = s.split(", "); // Indholdet i filen blev delt op, når der er et ", ".
                 usernames.add(info[0]);
                 passwords.add(info[1]);
             }
-            if(usernames.contains((ui.promptText("Type username:"))) && passwords.contains(ui.promptText("Type password;"))) {
+            if (usernames.contains((ui.promptText("Type username:"))) && passwords.contains(ui.promptText("Type password;"))) {
                 // Kigger om det username, brugeren skriver er i arrayet. Det samme som password
                 // Problemet er at man kan skrive et hvilket som helst password der er i arrayet. Selv hvis det er til et andet username.
                 // HASHMAP KAN BRUGES HER!!!!!
-                    homeMenu();
-                } else {
-                    ui.displayMsg("Username or password is wrong. Please try again.");
-                    loadUserData();
-                }
+                homeMenu();
+            } else {
+                ui.displayMsg("Username or password is wrong. Please try again.");
+                loadUserData();
+            }
         } else {
             ui.displayMsg("Sorry, but we don't have any users yet. So please make one");
             // Hvis filen er tom, så siger vi at vi ikke har nogle brugere og kalder på metoden igen.
@@ -84,7 +84,7 @@ public class StreamingService {
         ui.displayMsg("See watchlist. Press 4");
         ui.displayMsg("Log out. Press 5");
         int choice = ui.promptNumeric("Type nummer:");
-        switch(choice) {
+        switch (choice) {
             case 1:
                 // Call on method to search on a specific movie or series
                 ui.displayMsg("Searching movies");
@@ -109,4 +109,5 @@ public class StreamingService {
                 ui.displayMsg("Choice invalid");
                 homeMenu();
         }
+    }
 }
