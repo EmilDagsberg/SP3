@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class TextUI {
@@ -8,16 +9,18 @@ public class TextUI {
         System.out.println(msg);
     }
 
-    public boolean promptBinary(String msg){
-        String input = promptText(msg);
-        if(input.equalsIgnoreCase("Y")){
-            return true;
-        }
-        else if(input.equalsIgnoreCase("N")){
-            return false;
-        }
-        return promptBinary(msg);
+    public int displayHomeMenu(String msg) {
+        displayMsg("Find movie or series. Press 1");
+        displayMsg("Search genre. Press 2");
+        displayMsg("See previously watched movies and series. Press 3");
+        displayMsg("See watchlist. Press 4");
+        displayMsg("Log out. Press 5");
+        int choice = promptNumeric(msg);
+        return choice;
     }
+
+
+
 
     public int promptNumeric(String msg) {
         System.out.println(msg);              // Stille brugeren et spørgsmål
@@ -50,6 +53,16 @@ public class TextUI {
         }
         return choices;
     }
+    /*public boolean promptBinary(String msg){
+            String input = promptText(msg);
+            if(input.equalsIgnoreCase("Y")){
+                return true;
+            }
+            else if(input.equalsIgnoreCase("N")){
+                return false;
+            }
+            return promptBinary(msg);
+        }
 
     public void displayList(ArrayList<String> options, String msg){
         System.out.println("*******");
@@ -63,4 +76,5 @@ public class TextUI {
             i++;
         }
     }
+     */
 }

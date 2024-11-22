@@ -3,21 +3,27 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 public class FileIO {
 
-    public static ArrayList<String> readUserData(String path) {
-        ArrayList<String> data = new ArrayList();
+    public static HashMap<String, String> readUserData(String path) {
+        HashMap<String, String> data = new HashMap<>();
         File file = new File(path);
         try {
             Scanner scan = new Scanner(file);
             scan.nextLine();//skip header
 
             while (scan.hasNextLine()) {
-                String line = scan.nextLine(); // "title; release year; etc."
-                data.add(line);
+                String[] userDetails = scan.nextLine().split(",");
+
+                if(userDetails.length == 2) {
+                    String username = userDetails[0].trim();
+                    String password = userDetails[1].trim();
+                    data.put(username, password);
+                }
             }
         } catch (FileNotFoundException e) {
             System.out.println("File was not found");
@@ -51,7 +57,7 @@ public class FileIO {
         return movieData;
     }
 
-    public static void SaveUserData(String userAsText, String path, String header) {
+    public static void SaveUserData(String userAsText, String path) {
         try {
             FileWriter writer = new FileWriter(path, true);
                 writer.write(userAsText + "\n"); //"username, password";

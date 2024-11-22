@@ -57,15 +57,17 @@ class Series{
 class FileIO {
 + ArrayList<Movie> readMovieData(String path)
 + Collection<String readSeriesData(String path)
-+ ArrayList<String> readUserData(String path)
++ HashMap<String, String> readUserData(String path)
++ void SaveUserData(String userAsText, String path)
 }
 
 class TextUI {
 - Scanner scanner
 + void displayMsg(String msg)
++ int displayMenu(String msg)
 + int promptNumeric(String msg)
 + String promptText(String msg)
-+ boolean promptBoolean (String msg)
+
 }
 
 Main *-- StreamingService
