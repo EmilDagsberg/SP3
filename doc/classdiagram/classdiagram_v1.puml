@@ -46,6 +46,7 @@ abstract class Media{
 # String releaseYear
 # String seasonAndEpisodes
 +Media(String mediaTitle, String releaseYear, String genre, double rating, String seasonAndEpisodes)
++Media(String mediaTitle, String releaseYear, String genre, double rating)
 }
 
 class Movie{
