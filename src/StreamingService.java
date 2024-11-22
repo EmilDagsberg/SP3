@@ -109,45 +109,4 @@ public class StreamingService {
                 ui.displayMsg("Choice invalid");
                 homeMenu();
         }
-
-    public void createMovies(){
-        try {
-            ArrayList<String> movieData = io.readData(movieDataPath);
-            String title;
-            int releaseYear;
-            String genres;
-            Double rating;
-            for (String s : movieData) {
-                String[] data = s.split(";"); //splits a line into 4 Strings containing Title/ReleaseYear/Genres/Rating"
-                title = data[0];
-                releaseYear = Integer.valueOf(data[1]);
-                genres = (data[2]);
-                rating = Double.valueOf(data[3]);
-                Movie newMedia = new Movie(title, releaseYear, genres, rating);
-                movies.add(newMedia);
-            }
-        }catch (FileNotFoundException e){
-            System.out.println("File not found");
-        }
-    }
-    public void createMovies(){
-        try {
-            ArrayList<String> movieData = io.readData(movieDataPath);
-            String title;
-            int releaseYear;
-            String genres;
-            Double rating;
-            for (String s : movieData) {
-                String[] data = s.split(";"); //splits a line into 4 Strings containing Title/ReleaseYear/Genres/Rating"
-                title = data[0];
-                releaseYear = Integer.valueOf(data[1]);
-                genres = (data[2]);
-                rating = Double.valueOf(data[3]);
-                Movie newMedia = new Movie(title, releaseYear, genres, rating);
-                movies.add(newMedia);
-            }
-        }catch (FileNotFoundException e){
-            System.out.println("File not found");
-        }
-    }
 }

@@ -25,6 +25,32 @@ public class FileIO {
         return data;
     }
 
+    public static ArrayList<Movie> readMovieData(String path) {
+        String title;
+        int releaseYear;
+        String genres;
+        Double rating;
+        ArrayList<Movie> movieData = new ArrayList();
+        File file = new File(path);
+        try {
+            Scanner scan = new Scanner(file);
+            scan.nextLine();//skip header
+            while (scan.hasNextLine()) {
+                String line = scan.nextLine(); // "title; release year; etc."
+                String[] data = line.split(";"); //splits a line into 4 Strings containing Title/ReleaseYear/Genres/Rating"
+                title = data[0];
+                releaseYear = Integer.valueOf(data[1]);
+                genres = (data[2]);
+                rating = Double.valueOf(data[3]);
+                Movie newMovie = new Movie(title, releaseYear, genres, rating);
+                movieData.add(newMovie);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("File was not found");
+        }
+        return data;
+    }
+
     public static void SaveUserData(String userAsText, String path, String header) {
         try {
             FileWriter writer = new FileWriter(path, true);
