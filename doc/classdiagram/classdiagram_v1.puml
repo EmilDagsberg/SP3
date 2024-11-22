@@ -40,11 +40,11 @@ class User {
 
 
 abstract class Media{
-- String mediaTitle
-- double rating
-- String genre
-- String releaseYear
-- String seasonAndEpisodes
+# String mediaTitle
+# double rating
+# String genre
+# String releaseYear
+# String seasonAndEpisodes
 +Media(String mediaTitle, String releaseYear, String genre, double rating, String seasonAndEpisodes)
 }
 
