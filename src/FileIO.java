@@ -48,7 +48,7 @@ public class FileIO {
         } catch (FileNotFoundException e) {
             System.out.println("File was not found");
         }
-        return data;
+        return movieData;
     }
 
     public static void SaveUserData(String userAsText, String path, String header) {
