@@ -13,4 +13,10 @@ public abstract class Media {
         this.seasonsAndEpisodes = seasonsAndEpisodes;
     }
 
+    public Media(String mediaTitle,double rating,String genre,String releaseYear){
+        this.mediaTitle = mediaTitle;
+        this.rating = rating;
+        this.genre = genre;
+        this.releaseYear = releaseYear;
+    }
 }
