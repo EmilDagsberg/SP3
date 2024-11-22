@@ -82,7 +82,7 @@ public class StreamingService {
         ui.displayMsg("See previously watched movies and series. Press 3");
         ui.displayMsg("See watchlist. Press 4");
         ui.displayMsg("Log out. Press 5");
-        int choice = ui.promptNumeric("Type nummer:");
+        int choice = ui.promptNumeric("Type number:");
         switch(choice) {
             case 1:
                 // Call on method to search on a specific movie or series
