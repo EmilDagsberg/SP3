@@ -12,6 +12,7 @@ class StreamingService{
 - String userDataPath
 - ArrayList<Movie> movies
 - HashMap<String, String> userData
+- User currentUser
 - TextUI ui
 - FileIO io
 + StreamingService(String name)

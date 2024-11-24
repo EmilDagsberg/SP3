@@ -23,10 +23,8 @@ public class StreamingService {
     }
 
     void startStreamingService() {
-        ui.displayMsg("Welcome to " + this.name);
+        ui.displayMsg("Welcome to " + this.name + "\n1. Make new user? \n2. Login on existing user?");
 
-        ui.displayMsg("Make new user? Press 1");
-        ui.displayMsg(("Login on existing user? Press 2"));
         int choice = ui.promptNumeric("Type 1 or 2.");
 
         if (choice == 1) { // Brugernes valg bliver gemt og tjekkes om hvilket nummer det er.
