@@ -9,6 +9,7 @@ public class StreamingService {
     private String userDataPath;
     private ArrayList<Movie> movies = new ArrayList<Movie>();
     private HashMap<String, String> userData;
+    private User currentUser;
     private TextUI ui = new TextUI();
     private FileIO io = new FileIO();
 
@@ -47,8 +48,8 @@ public class StreamingService {
             username = ui.promptText("Type username:");
         }
         String password = ui.promptText("Type password:");
-        User u = new User(username, password);
-        this.addUser(u);
+        currentUser = new User(username, password);
+        this.addUser(currentUser);
     }
 
     public void addUser(User u) {
@@ -62,6 +63,7 @@ public class StreamingService {
             String enteredPassword = ui.promptText("Type password:");
             if(userData.containsKey(enteredUsername) && userData.get(enteredUsername).equals(enteredPassword)){
                 // Den if tjekker om det tastede username (key) eksistere. Herefter os tastede password stemmer overens med sin key.
+                currentUser = new User(enteredUsername, enteredPassword);
                 homeMenu();
             } else {
                 ui.displayMsg("Username or password is wrong. Please try again");
