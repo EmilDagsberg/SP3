@@ -7,10 +7,11 @@ class Main {
 
 class StreamingService{
 - String name
-- String movieDataPath;
-- String seriesDataPath;
-- String userDataPath;
-- ArrayList<Movie> movies;
+- String movieDataPath
+- String seriesDataPath
+- String userDataPath
+- ArrayList<Movie> movies
+- HashMap<String, String> userData
 - TextUI ui
 - FileIO io
 + StreamingService(String name)
@@ -29,6 +30,8 @@ class User {
 - Collection<Media> watchList
 - PrevWatched prevWatched
 - Collection<Media> prevWatched
++ User(String username, String password)
++ String toString()
 
 }
 
@@ -55,16 +58,16 @@ class Series{
 }
 
 class FileIO {
++ HashMap<String, String> readUserData(String path)
 + ArrayList<Movie> readMovieData(String path)
 + Collection<String readSeriesData(String path)
-+ HashMap<String, String> readUserData(String path)
 + void SaveUserData(String userAsText, String path)
 }
 
 class TextUI {
-- Scanner scanner
+- Scanner scan
 + void displayMsg(String msg)
-+ int displayMenu(String msg)
++ int displayHomeMenu(String msg)
 + int promptNumeric(String msg)
 + String promptText(String msg)
 

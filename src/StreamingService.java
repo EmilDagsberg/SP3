@@ -3,20 +3,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class StreamingService {
-    String name;
-    String movieDataPath;
-    String seriesDataPath;
-    String userDataPath;
-    ArrayList<Movie> movies = new ArrayList<Movie>();
-    //ArrayList<User> users;
-    TextUI ui = new TextUI();
-    FileIO io = new FileIO();
+    private String name;
+    private String movieDataPath;
+    private String seriesDataPath;
+    private String userDataPath;
+    private ArrayList<Movie> movies = new ArrayList<Movie>();
+    private HashMap<String, String> userData;
+    private TextUI ui = new TextUI();
+    private FileIO io = new FileIO();
 
     StreamingService(String name) {
         this.name = name;
         this.movieDataPath = "data/film.txt";
         this.seriesDataPath = "data/serier.txt";
         this.userDataPath = "data/userData.csv";
+        this.userData = io.readUserData(this.userDataPath);
         //this.users = new ArrayList<User>();
     }
 
@@ -41,6 +42,10 @@ public class StreamingService {
 
     void createUser() {
         String username = ui.promptText("Type username:");
+        while(userData.containsKey(username)) { // Loop der altid tjekker om det nye username allerede eksistere.
+            ui.displayMsg("Username already exists. Please choose different username");
+            username = ui.promptText("Type username:");
+        }
         String password = ui.promptText("Type password:");
         User u = new User(username, password);
         this.addUser(u);
@@ -52,11 +57,11 @@ public class StreamingService {
     }
 
     public void loadUserData() {
-        HashMap<String, String> userData = io.readUserData(this.userDataPath);
         if(!userData.isEmpty()) {
             String enteredUsername = ui.promptText("Type username:");
             String enteredPassword = ui.promptText("Type password:");
             if(userData.containsKey(enteredUsername) && userData.get(enteredUsername).equals(enteredPassword)){
+                // Den if tjekker om det tastede username (key) eksistere. Herefter os tastede password stemmer overens med sin key.
                 homeMenu();
             } else {
                 ui.displayMsg("Username or password is wrong. Please try again");
