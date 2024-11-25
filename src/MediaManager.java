@@ -35,7 +35,26 @@ MediaManager(TextUI ui, FileIO io, User currentUser, String movieDataPath, Strin
         }
 
         public void displayMediaInformation(Media media, User currentUser) {
+            ui.displayMsg("Title: " + movie.getMediaTitle());
+            ui.displayMsg("Release Year: " + movie.getReleaseYear());
+            ui.displayMsg("Genre: " + movie.getGenre());
+            ui.displayMsg("Rating: " + movie.getRating());
 
+            int choice = ui.promptNumeric("What do you want to do?\n1. Watch movie\n2. Add to watchlist\n3. Go back");
+
+            switch (choice) {
+                case 1:
+                    watchMovie(movie);
+                    break;
+                case 2:
+                    addToWatchlist(movie, currentUser);
+                    break;
+                case 3:
+                    ui.displayMsg("Going back...");
+                    break;
+                default:
+                    ui.displayMsg("Invalid choice. Going back...");
+            }
         }
 
         private void addToWatchlist(Media media, User currentUser) {
