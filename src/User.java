@@ -4,7 +4,7 @@ public class User {
     private String username;
     private String password;
     ArrayList<Media> watchlist;
-    TextUI ui = new TextUI;
+    TextUI ui = new TextUI();
 
     User(String username, String password) {
         this.username = username;
@@ -31,5 +31,13 @@ public class User {
                 ui.displayMsg(media.getMediaTitle());
             }
         }
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public ArrayList<Media> getWatchlist() {
+        return watchlist;
     }
 }
