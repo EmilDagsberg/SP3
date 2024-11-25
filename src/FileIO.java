@@ -79,7 +79,12 @@ public class FileIO {
                 title = data[0];
                 releaseYear = data[1];
                 genres = (data[2]);
-                rating = Double.valueOf(data[3]);
+                try{
+                    String newRating = data[3].trim().replace(',', '.');
+                    rating = Double.valueOf(newRating);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 seasonsAndEpisodes = data[4];
                 Series newSeries = new Series(title, releaseYear, genres, rating, seasonsAndEpisodes);
                 seriesData.add(newSeries);
@@ -88,8 +93,6 @@ public class FileIO {
             System.out.println("File was not found");
         }
         return seriesData;
-
-
     }
 
     public static void SaveUserData(String userAsText, String path) {

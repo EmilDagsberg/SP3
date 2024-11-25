@@ -65,6 +65,6 @@ MediaManager(TextUI ui, FileIO io, User currentUser, String movieDataPath, Strin
 
         int userChoice = ui.promptNumeric("Type a number to view details");
 
-
+        displayMediaInformation(searchResults[userChoice-1]);
     }
 }
