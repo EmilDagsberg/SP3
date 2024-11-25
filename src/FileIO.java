@@ -121,14 +121,53 @@ public class FileIO {
 
         try {
             Scanner scan = new Scanner(file);
-            while(scan.hasNextLine()) {
 
+            while (scan.hasNextLine()) {
+                String mediaInfo = scan.nextLine().trim();
+                if (!mediaInfo.isEmpty()) {
+                    // Assuming you have both Movie and Series in your Media hierarchy
+                    // You need to parse the line and recreate the appropriate object
+                    // Example for parsing Movie or Series objects:
+                    if (mediaInfo.startsWith("Movie")) {
+                        Movie movie = parseMovie(mediaInfo);  // Implement parseMovie
+                        watchlist.add(movie);
+                    } else if (mediaInfo.startsWith("Series")) {
+                        Series series = parseSeries(mediaInfo);  // Implement parseSeries
+                        watchlist.add(series);
+                    }
+                }
             }
-
-
+        } catch (FileNotFoundException e) {
+            System.out.println("Watchlist file not found for user " + username);
+        }
+        return watchlist;
     }
 
+    // Parse a Movie from its string representation (assuming the format is consistent)
+    private Movie parseMovie(String mediaInfo) {
+        String[] parts = mediaInfo.split(", ");
+        // Example: "Movie: Title (2024), Genre, Rating"
+        String title = parts[1].trim();
+        String releaseYear = parts[2].trim().replace("(", "").replace(")", "");
+        String genre = parts[3].trim();
+        double rating = Double.parseDouble(parts[4].trim());
+        return new Movie(title, releaseYear, genre, rating);
+    }
 
+    // Parse a Series from its string representation (assuming the format is consistent)
+    private Series parseSeries(String mediaInfo) {
+        String[] parts = mediaInfo.split(", ");
+        // Example: "Series: Title (2023), Genre, 1 Season, 10 Episodes"
+        String title = parts[1].trim();
+        String releaseYear = parts[2].trim().replace("(", "").replace(")", "");
+        String genre = parts[3].trim();
+        String seasonsAndEpisodes = parts[4].trim();
+        double rating = Double.parseDouble(parts[5].trim());
+        return new Series(title, releaseYear, genre, rating, seasonsAndEpisodes);
+    }
 }
+
+
+
 
 
