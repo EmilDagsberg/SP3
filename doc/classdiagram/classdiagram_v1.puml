@@ -92,6 +92,7 @@ class TextUI {
 
 Main *-- StreamingService
 StreamingService *-- MediaManager
+MediaManager *-- Media
 StreamingService *-- User
 StreamingService *-- FileIO
 StreamingService *-- TextUI
