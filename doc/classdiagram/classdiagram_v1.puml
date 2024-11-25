@@ -61,16 +61,19 @@ abstract class Media{
 # String seasonAndEpisodes
 +Media(String mediaTitle, String releaseYear, String genre, double rating, String seasonAndEpisodes)
 +Media(String mediaTitle, String releaseYear, String genre, double rating)
++String toString()
 }
 
 class Movie{
 + Movie(String mediaTitle, String releaseYear, String genre, double rating)
++String toString()
 'metode der loader liste over film?
 
 }
 
 class Series{
 +Series(String mediaTitle, String releaseYear, String genre, double rating, String seasonAndEpisodes)
++String toString()
 'metode der loader liste over serier?
 }
 
@@ -87,7 +90,6 @@ class TextUI {
 + int displayHomeMenu(String msg)
 + int promptNumeric(String msg)
 + String promptText(String msg)
-
 }
 
 Main *-- StreamingService
