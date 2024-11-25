@@ -77,53 +77,7 @@ public class FileIO {
         }
     }
 
-    public ArrayList<Media> readWatchlist(String username) {
-        ArrayList<Media> watchlist = new ArrayList<>();
-        File file = new File("data/" + username + "_watchlist.txt");
 
-        try {
-            Scanner scan = new Scanner(file);
-
-            while (scan.hasNextLine()) {
-                String mediaInfo = scan.nextLine().trim();
-                if (!mediaInfo.isEmpty()) {
-                    if (mediaInfo.startsWith("Movie")) {
-                        Movie movie = parseMovie(mediaInfo);  // Implement parseMovie
-                        watchlist.add(movie);
-                    } else if (mediaInfo.startsWith("Series")) {
-                        Series series = parseSeries(mediaInfo);  // Implement parseSeries
-                        watchlist.add(series);
-                    }
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("Watchlist file not found for user " + username);
-        }
-        return watchlist;
-    }
-
-    // Parse a Movie from its string representation (assuming the format is consistent)
-    private Movie parseMovie(String mediaInfo) {
-        String[] parts = mediaInfo.split(", ");
-        // Example: "Movie: Title (2024), Genre, Rating"
-        String title = parts[1].trim();
-        String releaseYear = parts[2].trim().replace("(", "").replace(")", "");
-        String genre = parts[3].trim();
-        double rating = Double.parseDouble(parts[4].trim());
-        return new Movie(title, releaseYear, genre, rating);
-    }
-
-    // Parse a Series from its string representation (assuming the format is consistent)
-    private Series parseSeries(String mediaInfo) {
-        String[] parts = mediaInfo.split(", ");
-        // Example: "Series: Title (2023), Genre, 1 Season, 10 Episodes"
-        String title = parts[1].trim();
-        String releaseYear = parts[2].trim().replace("(", "").replace(")", "");
-        String genre = parts[3].trim();
-        String seasonsAndEpisodes = parts[4].trim();
-        double rating = Double.parseDouble(parts[5].trim());
-        return new Series(title, releaseYear, genre, rating, seasonsAndEpisodes);
-    }
 
 
     /* public String[] readWatchListData(String path, int length) {

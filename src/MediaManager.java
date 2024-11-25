@@ -15,9 +15,9 @@ public class MediaManager {
         // this.series = io.readSeries
     }
 
-    private void addToWatchlist(Movie movie, User currentUser) {
-        currentUser.addToWatchlist(movie);
-        ui.displayMsg("Movie added to your watchlist: " + movie.getMediaTitle());
+    private void addToWatchlist(Media media, User currentUser) {
+        currentUser.addToWatchlist(media);
+        ui.displayMsg("Movie added to your watchlist: " + media.getMediaTitle());
         io.saveWatchlist(currentUser.getUsername(), currentUser.getWatchlist());
     }
 
