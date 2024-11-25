@@ -8,6 +8,7 @@ public class StreamingService {
     private String seriesDataPath;
     private String userDataPath;
     private ArrayList<Movie> movies = new ArrayList<Movie>();
+    private ArrayList<Series> series = new ArrayList<Series>();
     private HashMap<String, String> userData;
     private User currentUser;
     private TextUI ui = new TextUI();
