@@ -42,6 +42,16 @@ public class MediaManager {
 
         int userChoice = ui.promptNumeric("Type a number to view details");
 
-        displayMediaInformation(searchResults[userChoice-1]);
+        displayMediaInformation(searchResults.get(userChoice-1));
+    }
+
+    public void displayMediaInformation(Media media){
+
+        //Display the information of the media object. Use media.getMediaTitle()
+
+        //Display a numbered menu that gives the user choices of what to do with the given media. Switch case etc.
+
+        //Add the relevant methods to the cases in the switch. 1 = AddToWatchlist(media) 2 = PlayMedia(media) etc.
+        //Remember to use the class diagram for method names
     }
 }
