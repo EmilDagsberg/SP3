@@ -3,7 +3,8 @@ import java.util.ArrayList;
 public class User {
     private String username;
     private String password;
-    ArrayList<Media> watchlist
+    ArrayList<Media> watchlist;
+    TextUI ui = new TextUI;
 
     User(String username, String password) {
         this.username = username;
