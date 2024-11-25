@@ -25,11 +25,27 @@ class StreamingService{
 
 }
 
+class MediaManager {
+- TextUI
+- FileIO
+- movieDataPath
+- seriesDataPath
+- ArrayList<Movies> movies
+- ArrayList<Series> series
++ MediaManager(ui, io, User currentUser, movieDataPath, seriesDataPath)
++ void searchByTitle()
++ void displayInformation()
++ void playMedia()
++ void searchByGenre
++ void addToWatchlist
++
+
+}
+
 class User {
 - String username
 - String password
 - Collection<Media> watchList
-- PrevWatched prevWatched
 - Collection<Media> prevWatched
 + User(String username, String password)
 + String toString()
