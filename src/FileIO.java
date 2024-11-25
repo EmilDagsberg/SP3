@@ -47,7 +47,12 @@ public class FileIO {
                 title = data[0];
                 releaseYear = data[1];
                 genres = (data[2]);
-                rating = Double.valueOf(data[3]);
+                try{
+                    String newRating = data[3].trim().replace(',', '.');
+                    rating = Double.valueOf(newRating);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 Movie newMovie = new Movie(title, releaseYear, genres, rating);
                 movieData.add(newMovie);
             }
@@ -55,6 +60,36 @@ public class FileIO {
             System.out.println("File was not found");
         }
         return movieData;
+    }
+
+    public static ArrayList<Series> readSeriesData(String path){
+        String title;
+        String releaseYear;
+        String genres;
+        Double rating;
+        String seasonsAndEpisodes;
+        ArrayList<Series> seriesData = new ArrayList();
+        File file = new File(path);
+        try {
+            Scanner scan = new Scanner(file);
+            scan.nextLine();//skip header
+            while (scan.hasNextLine()) {
+                String line = scan.nextLine(); // "title; release year; etc."
+                String[] data = line.split(";"); //splits a line into 4 Strings containing Title/ReleaseYear/Genres/Rating"
+                title = data[0];
+                releaseYear = data[1];
+                genres = (data[2]);
+                rating = Double.valueOf(data[3]);
+                seasonsAndEpisodes = data[4];
+                Series newSeries = new Series(title, releaseYear, genres, rating, seasonsAndEpisodes);
+                seriesData.add(newSeries);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("File was not found");
+        }
+        return seriesData;
+
+
     }
 
     public static void SaveUserData(String userAsText, String path) {
