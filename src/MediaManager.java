@@ -66,10 +66,39 @@ public class MediaManager {
         }
 
     private void addToWatchlist(Media media) {
-        this.currentUser.addToWatchlist(media);
+        currentUser.addToWatchlist(media);
         ui.displayMsg("Movie added to your watchlist: " + media.getMediaTitle());
         io.saveWatchlist(currentUser.getUsername(), currentUser.getWatchlist());
     }
 
+    public void watchlistInteraction(User currentUser) {
+        this.currentUser = currentUser;
+        if (currentUser.getWatchlist().isEmpty()) {
+            ui.displayMsg("Your watchlist is empty.");
+            streamingService.homeMenu();  // Go back to the home menu if the watchlist is empty
+            return;
+        }
 
+        // Display watchlist and allow user to select a movie
+        ui.displayMsg("Your Watchlist:");
+        int counter = 1;
+        for (Media media : currentUser.getWatchlist()) {
+            ui.displayMsg(counter + ". " + media.getMediaTitle());
+            counter++;
+        }
+
+        int userChoice = ui.promptNumeric("Choose a movie number to start watching, or 0 to go back");
+
+        if (userChoice == 0) {
+            ui.displayMsg("Going back...");
+            streamingService.homeMenu();  // Go back to home menu
+        } else if (userChoice > 0 && userChoice <= currentUser.getWatchlist().size()) {
+            Media selectedMedia = currentUser.getWatchlist().get(userChoice - 1);
+            ui.displayMsg("You are now watching: " + selectedMedia.getMediaTitle());
+            // You could add functionality to actually "watch" the media here, if needed
+        } else {
+            ui.displayMsg("Invalid choice, going back...");
+            watchlistInteraction(currentUser);  // Prompt the user again if the choice is invalid
+        }
+    }
 }
