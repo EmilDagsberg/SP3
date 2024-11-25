@@ -10,15 +10,15 @@ public class MediaManager {
     private TextUI ui = new TextUI();
     private FileIO io = new FileIO();
 
-MediaManager(TextUI ui, FileIO io, User currentUser, String movieDataPath, String seriesDataPath) {
+    MediaManager(TextUI ui, FileIO io, String movieDataPath, String seriesDataPath) {
         this.ui = ui;
         this.io = io;
-        this.currentUser = currentUser;
         this.movies = io.readMovieData(movieDataPath);
         // this.series = io.readSeries
     }
 
-    public void searchByTitle() {
+    public void searchByTitle(User currentUser) {
+        this.currentUser = currentUser;
         String searchInput = ui.promptText("Enter your searchword:");
         ArrayList<Movie> searchResults = new ArrayList<Movie>(); //list to contain results from search
         int counter = 1;
