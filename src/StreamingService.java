@@ -22,7 +22,7 @@ public class StreamingService {
         this.userDataPath = "data/userData.csv";
         this.userData = io.readUserData(this.userDataPath);
         //this.users = new ArrayList<User>();
-        this.manager = new MediaManager(ui, io, movieDataPath, seriesDataPath);
+        this.manager = new MediaManager(ui, io, movieDataPath, seriesDataPath, this);
     }
 
     void startStreamingService() {
@@ -77,7 +77,7 @@ public class StreamingService {
     }
 
     public void loadWatchlist() {
-        ArrayList<Media> watchlist = io.readWatchlist(currentUser.getUsername());
+        ArrayList<Media> watchlist = io.loadWatchlist(currentUser.getUsername());
         currentUser.watchlist = watchlist;
     }
 
@@ -98,6 +98,7 @@ public class StreamingService {
                 break;
             case 4:
                 // call on method to see a list of saved movies that you want to watch.
+                loadWatchlist();
                 currentUser.displayWatchlist();
                 break;
             case 5:

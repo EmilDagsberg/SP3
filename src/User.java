@@ -28,7 +28,7 @@ public class User {
         } else {
             ui.displayMsg("Your watchlist:");
             for(Media media : watchlist) {
-                ui.displayMsg(media.getMediaTitle());
+                ui.displayMsg(media.getMediaTitle() + " (" + media.getReleaseYear() + ")");
             }
         }
     }

@@ -13,7 +13,7 @@ public abstract class Media {
         this.seasonsAndEpisodes = seasonsAndEpisodes;
     }
 
-    public Media(String mediaTitle,String releaseYear, String genre, double rating){
+    public Media(String mediaTitle, String releaseYear, String genre, double rating){
         this.mediaTitle = mediaTitle;
         this.rating = rating;
         this.genre = genre;

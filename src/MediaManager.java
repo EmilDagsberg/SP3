@@ -7,13 +7,16 @@ public class MediaManager {
     private User currentUser;
     private ArrayList<Movie> movies = new ArrayList<Movie>();
     private ArrayList<Series> series = new ArrayList<Series>();
-    private TextUI ui = new TextUI();
-    private FileIO io = new FileIO();
+    private TextUI ui;
+    private FileIO io;
+    private StreamingService streamingService;
 
-    MediaManager(TextUI ui, FileIO io, String movieDataPath, String seriesDataPath) {
+
+    MediaManager(TextUI ui, FileIO io, String movieDataPath, String seriesDataPath, StreamingService streamingService) {
         this.ui = ui;
         this.io = io;
         this.movies = io.readMovieData(movieDataPath);
+        this.streamingService = streamingService;
         // this.series = io.readSeries
     }
 
@@ -38,30 +41,35 @@ public class MediaManager {
         displayMediaInformation(searchResults.get(userChoice - 1));
     }
 
-        public void displayMediaInformation(Media media) {
-            ui.displayMsg(media.toString());
+    public void displayMediaInformation(Media media) {
+        ui.displayMsg(media.toString());
 
-            int choice = ui.promptNumeric("What do you want to do?\n1. Watch movie\n2. Add to watchlist\n3. Go back");
+        int choice = ui.promptNumeric("What do you want to do?\n1. Watch movie\n2. Add to watchlist\n3. Go back");
 
-            switch (choice) {
-                case 1:
-                    // watch media method
-                    break;
-                case 2:
-                    addToWatchlist(media);
-                    break;
-                case 3:
-                    ui.displayMsg("Going back...");
-                    break;
-                default:
-                    ui.displayMsg("Invalid choice. Going back...");
+        switch (choice) {
+            case 1:
+                // watch media method
+                break;
+            case 2:
+                addToWatchlist(media);
+                ui.displayMsg("Going back...");
+                streamingService.homeMenu();
+                break;
+            case 3:
+                ui.displayMsg("Going back...");
+                searchByTitle(currentUser);
+                break;
+            default:
+                ui.displayMsg("Invalid choice. Going back...");
+                streamingService.homeMenu();
             }
         }
 
-        private void addToWatchlist(Media media) {
+    private void addToWatchlist(Media media) {
         this.currentUser.addToWatchlist(media);
         ui.displayMsg("Movie added to your watchlist: " + media.getMediaTitle());
         io.saveWatchlist(currentUser.getUsername(), currentUser.getWatchlist());
     }
+
 
 }

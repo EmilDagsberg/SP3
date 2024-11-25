@@ -108,23 +108,36 @@ public class FileIO {
     public void saveWatchlist(String username, ArrayList<Media> watchlist) {
         try (FileWriter writer = new FileWriter("data/" + username + "_watchlist.txt", true)) {
             for (Media media : watchlist) {
-                writer.write(media.getMediaTitle() + media.getReleaseYear() + "\n");
+                writer.write(media.getMediaTitle() + "; " + media.getReleaseYear() + "; " + media.getGenre() + "; " + media.getRating() + "\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public ArrayList<Media> readWatchlist(String username) {
-        ArrayList<Media> watchlist = new ArrayList<>();
+    public ArrayList<Media> loadWatchlist(String username) {
+        String title;
+        String releaseYear;
+        String genres;
+        Double rating;
+        ArrayList<Media> watchlist = new ArrayList();
         File file = new File("data/" + username + "_watchlist.txt");
 
-        try {
-            Scanner scan = new Scanner(file);
+        try (Scanner scan = new Scanner(file)){
             while(scan.hasNextLine()) {
-
-            }
+                String line = scan.nextLine();
+                String[] data = line.split(";");
+                title = data[0].trim();
+                releaseYear = data[1].trim();
+                genres = data[2].trim();
+                rating = Double.valueOf(data[3].trim());
+                Media media = new Movie(title, releaseYear, genres, rating);
+                watchlist.add(media);
+                }
+        } catch (FileNotFoundException e) {
+            System.out.println("Watchlist was not found");
         }
+        return watchlist;
     }
 }
 
