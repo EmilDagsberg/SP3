@@ -10,16 +10,17 @@ class StreamingService{
 - String movieDataPath
 - String seriesDataPath
 - String userDataPath
-- ArrayList<Movie> movies
 - HashMap<String, String> userData
 - User currentUser
 - TextUI ui
 - FileIO io
+- MediaManager manager
 + StreamingService(String name)
 - void startStreamingService()
 - void createUser()
 - void addUser(User u)
 - void loadUserData()
+- void loadWatchlist()
 - void homeMenu()
 
 
@@ -28,28 +29,27 @@ class StreamingService{
 class MediaManager {
 - TextUI
 - FileIO
-- movieDataPath
-- seriesDataPath
 - ArrayList<Movies> movies
 - ArrayList<Series> series
 + MediaManager(ui, io, User currentUser, movieDataPath, seriesDataPath)
-+ void searchByTitle()
-+ void displayMediaInformation()
++ void searchByTitle(User currentUser)
++ void displayMediaInformation(Media media)
 + void playMedia()
 + void searchByGenre()
-+ void addToWatchlist()
-
-
+- void addToWatchlist(Media media)
++ void watchlistInteraction(User currentUser)
 }
 
 class User {
 - String username
 - String password
-- Collection<Media> watchList
+- ArrayList<Media> watchlist
 - Collection<Media> prevWatched
 + User(String username, String password)
 + String toString()
-
++ void addToWatchlist(Media media)
++ String getusername()
++ ArrayList<Media> getWatchlist()
 }
 
 
@@ -82,6 +82,8 @@ class FileIO {
 + ArrayList<Movie> readMovieData(String path)
 + ArrayList<Series> readSeriesData(String path)
 + void SaveUserData(String userAsText, String path)
++ void saveWatchlist(String username, ArrayList<Media> watchlist)
++ ArrayList<Media> loadWatchlist(String username)
 }
 
 class TextUI {

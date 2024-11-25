@@ -106,7 +106,7 @@ public class FileIO {
     }
 
     public void saveWatchlist(String username, ArrayList<Media> watchlist) {
-        try (FileWriter writer = new FileWriter("data/" + username + "_watchlist.txt", true)) {
+        try (FileWriter writer = new FileWriter("data/watchlistData/" + username + "_watchlist.txt", false)) {
             for (Media media : watchlist) {
                 writer.write(media.getMediaTitle() + "; " + media.getReleaseYear() + "; " + media.getGenre() + "; " + media.getRating() + "\n");
             }
@@ -116,12 +116,14 @@ public class FileIO {
     }
 
     public ArrayList<Media> loadWatchlist(String username) {
+        // Ligesom vi gør i load film og serieData. Her løber jeg tidligere watchlistdata. Laver nye objekter med dem. Og smider dem i et nyt array.
+        // Som så bliver til currentUsers.
         String title;
         String releaseYear;
         String genres;
         Double rating;
         ArrayList<Media> watchlist = new ArrayList();
-        File file = new File("data/" + username + "_watchlist.txt");
+        File file = new File("data/watchlistData/" + username + "_watchlist.txt");
 
         try (Scanner scan = new Scanner(file)){
             while(scan.hasNextLine()) {

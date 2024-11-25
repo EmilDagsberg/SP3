@@ -39,38 +39,4 @@ public class TextUI {
         return input;
     }
 
-    public ArrayList<String> promptChoice(ArrayList<String> options, int limit, String msg){
-        ArrayList<String> choices = new ArrayList<String>();  //Lave en beholder til at gemme brugerens valg
-        int count = 1;
-        while(choices.size() < limit){             //tjekke om brugeren skal vælge flere drinks
-            String choice = promptText(count+":");
-            choices.add(choice);
-            count++;
-        }
-        return choices;
-    }
-    /*public boolean promptBinary(String msg){
-            String input = promptText(msg);
-            if(input.equalsIgnoreCase("Y")){
-                return true;
-            }
-            else if(input.equalsIgnoreCase("N")){
-                return false;
-            }
-            return promptBinary(msg);
-        }
-
-    public void displayList(ArrayList<String> options, String msg){
-        System.out.println("*******");
-        System.out.println(msg);
-        System.out.println("*******");
-
-        int i = 1;
-
-        for (String option : options) {
-            System.out.println(i+": "+option);
-            i++;
-        }
-    }
-     */
 }

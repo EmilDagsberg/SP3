@@ -11,4 +11,5 @@ public class Movie extends Media {
                 "Genre: " + this.genre + "\n" +
                 "Rating: " + this.rating;
     }
+
 }

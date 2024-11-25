@@ -1,9 +1,6 @@
 import java.util.ArrayList;
 
 public class MediaManager {
-
-    private String movieDataPath;
-    private String seriesDataPath;
     private User currentUser;
     private ArrayList<Movie> movies = new ArrayList<Movie>();
     private ArrayList<Series> series = new ArrayList<Series>();
@@ -17,7 +14,6 @@ public class MediaManager {
         this.io = io;
         this.movies = io.readMovieData(movieDataPath);
         this.streamingService = streamingService;
-        // this.series = io.readSeries
     }
 
     public void searchByTitle(User currentUser) {
@@ -66,9 +62,9 @@ public class MediaManager {
         }
 
     private void addToWatchlist(Media media) {
-        currentUser.addToWatchlist(media);
+        currentUser.addToWatchlist(media); // add mediet til currentUsers watchlist
         ui.displayMsg("Movie added to your watchlist: " + media.getMediaTitle());
-        io.saveWatchlist(currentUser.getUsername(), currentUser.getWatchlist());
+        io.saveWatchlist(currentUser.getUsername(), currentUser.getWatchlist()); // gemmer så mediet i users unikke watchlistfil
     }
 
     public void watchlistInteraction(User currentUser) {
@@ -78,27 +74,24 @@ public class MediaManager {
             streamingService.homeMenu();  // Go back to the home menu if the watchlist is empty
             return;
         }
-
-        // Display watchlist and allow user to select a movie
-        ui.displayMsg("Your Watchlist:");
+        ui.displayMsg("Your Watchlist:"); // Viser ens watchlist med et nummer foran.
         int counter = 1;
         for (Media media : currentUser.getWatchlist()) {
-            ui.displayMsg(counter + ". " + media.getMediaTitle());
+            ui.displayMsg(counter + ". " + media.getMediaTitle() + " (" + media.getReleaseYear() +")");
             counter++;
         }
 
-        int userChoice = ui.promptNumeric("Choose a movie number to start watching, or 0 to go back");
+        int userChoice = ui.promptNumeric("Choose a movie/series number to start watching, or 0 to go back");
 
         if (userChoice == 0) {
             ui.displayMsg("Going back...");
-            streamingService.homeMenu();  // Go back to home menu
+            streamingService.homeMenu();
         } else if (userChoice > 0 && userChoice <= currentUser.getWatchlist().size()) {
-            Media selectedMedia = currentUser.getWatchlist().get(userChoice - 1);
-            ui.displayMsg("You are now watching: " + selectedMedia.getMediaTitle());
-            // You could add functionality to actually "watch" the media here, if needed
+            Media chosenMedia = currentUser.getWatchlist().get(userChoice - 1); // Det nummer som brugeren skrev (-1) er det index i arraylisten.
+            ui.displayMsg("You are now watching: " + chosenMedia.getMediaTitle()); // !!! KALD PÅ PLAYMEDIA METODEN NÅR DEN ER LAVET.
         } else {
             ui.displayMsg("Invalid choice, going back...");
-            watchlistInteraction(currentUser);  // Prompt the user again if the choice is invalid
+            watchlistInteraction(currentUser);  // Rekursiv kald, så brugeren må vælge igen.
         }
     }
 }

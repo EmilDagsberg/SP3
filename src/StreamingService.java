@@ -7,8 +7,6 @@ public class StreamingService {
     private String movieDataPath;
     private String seriesDataPath;
     private String userDataPath;
-    private ArrayList<Movie> movies = new ArrayList<Movie>();
-    private ArrayList<Series> series = new ArrayList<Series>();
     private HashMap<String, String> userData;
     private User currentUser;
     private TextUI ui = new TextUI();
@@ -21,7 +19,6 @@ public class StreamingService {
         this.seriesDataPath = "data/serier.txt";
         this.userDataPath = "data/userData.csv";
         this.userData = io.readUserData(this.userDataPath);
-        //this.users = new ArrayList<User>();
         this.manager = new MediaManager(ui, io, movieDataPath, seriesDataPath, this);
     }
 
@@ -78,14 +75,14 @@ public class StreamingService {
 
     public void loadWatchlist() {
         ArrayList<Media> watchlist = io.loadWatchlist(currentUser.getUsername());
-        currentUser.watchlist = watchlist;
+        currentUser.watchlist = watchlist; // Den loade watchlist bliver sat til watchlisten. Så data bliver gemt selv efter lukning af program.
     }
 
     public void homeMenu() {
+        loadWatchlist(); // Loader watchlisten med det samme, så hvis man adder en ny film, så bliver det ikke overwritet
         int choice = ui.displayHomeMenu("Type number:");
         switch (choice) {
             case 1:
-                // Call on method to search on a specific movie or series
                 manager.searchByTitle(this.currentUser);
                 break;
             case 2:
@@ -97,13 +94,9 @@ public class StreamingService {
                 ui.displayMsg("Seeing previously watched media");
                 break;
             case 4:
-                // call on method to see a list of saved movies that you want to watch.
-                loadWatchlist();
-                currentUser.displayWatchlist();
                 manager.watchlistInteraction(currentUser);
                 break;
             case 5:
-                // call on method to log out and close the program. Probably don't need a method. Just print that you are logging out.
                 ui.displayMsg("Logging out...");
                 break;
             default:

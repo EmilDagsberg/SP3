@@ -19,17 +19,10 @@ public class User {
 
 
     public void addToWatchlist(Media media) {
-        watchlist.add(media);
-    }
-
-    public void displayWatchlist() {
-        if(watchlist.isEmpty()) {
-            ui.displayMsg("Your watchlist is empty");
+        if(!watchlist.contains(media)) {
+            watchlist.add(media);
         } else {
-            ui.displayMsg("Your watchlist:");
-            for(Media media : watchlist) {
-                ui.displayMsg(media.getMediaTitle() + " (" + media.getReleaseYear() + ")");
-            }
+            ui.displayMsg("This media is already in the watchlist");
         }
     }
 
