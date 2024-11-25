@@ -15,11 +15,12 @@ public class MediaManager {
         this.io = io;
         this.currentUser = currentUser;
         this.movies = io.readMovieData(movieDataPath);
+        this.series = io.readSeriesData(seriesDataPath);
     }
 
     public void searchByTitle(){
         String searchInput = ui.promptText("Enter your searchword:");
-        ArrayList<Movie> searchResults = new ArrayList<Movie>(); //list to contain results from search
+        ArrayList<Media> searchResults = new ArrayList<Media>(); //list to contain results from search
         int counter = 1;
         for(Movie s : movies){
             String title = s.getMediaTitle().toLowerCase();
@@ -27,8 +28,14 @@ public class MediaManager {
                 searchResults.add(s);
             }
         }
+        for(Series s : series){
+            String title = s.getMediaTitle().toLowerCase();
+            if(title.contains(searchInput)){
+                searchResults.add(s);
+            }
+        }
         ui.displayMsg("Results: \n");
-        for(Movie s :searchResults){
+        for(Media s :searchResults){
             System.out.println(counter +". " + s.getMediaTitle());
             counter++;
         }
