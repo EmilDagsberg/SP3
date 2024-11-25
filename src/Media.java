@@ -19,4 +19,6 @@ public abstract class Media {
         this.genre = genre;
         this.releaseYear = releaseYear;
     }
+
+    public abstract String toString();
 }
