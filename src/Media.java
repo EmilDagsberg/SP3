@@ -21,4 +21,9 @@ public abstract class Media {
     }
 
     public abstract String toString();
+
+    public String getMediaTitle (){
+        return this.mediaTitle;
+    }
+
 }

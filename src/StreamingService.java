@@ -13,6 +13,7 @@ public class StreamingService {
     private User currentUser;
     private TextUI ui = new TextUI();
     private FileIO io = new FileIO();
+    private MediaManager manager;
 
     StreamingService(String name) {
         this.name = name;
@@ -21,6 +22,7 @@ public class StreamingService {
         this.userDataPath = "data/userData.csv";
         this.userData = io.readUserData(this.userDataPath);
         //this.users = new ArrayList<User>();
+        this.manager = new MediaManager(ui, io, currentUser, movieDataPath, seriesDataPath);
     }
 
     void startStreamingService() {
@@ -79,7 +81,7 @@ public class StreamingService {
         switch (choice) {
             case 1:
                 // Call on method to search on a specific movie or series
-                ui.displayMsg("Searching movies");
+                manager.searchByTitle();
                 break;
             case 2:
                 // call on method to search on a genre and get all movies and series in that genre.
