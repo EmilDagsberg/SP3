@@ -73,10 +73,10 @@ public class StreamingService {
         }
     }
 
-    public void loadWatchlist() {
+    /*public void loadWatchlist() {
         ArrayList<Media> watchlist = io.readWatchlist(currentUser.username);
         currentUser.watchlist = watchlist;
-    }
+    }*/
 
     public void homeMenu() {
         int choice = ui.displayHomeMenu("Type number:");
