@@ -18,24 +18,28 @@ MediaManager(TextUI ui, FileIO io, User currentUser, String movieDataPath, Strin
         // this.series = io.readSeries
     }
 
-    public void searchByTitle(){
+    public void searchByTitle() {
         String searchInput = ui.promptText("Enter your searchword:");
         ArrayList<Movie> searchResults = new ArrayList<Movie>(); //list to contain results from search
         int counter = 1;
-        for(Movie s : movies){
+        for (Movie s : movies) {
             String title = s.getMediaTitle().toLowerCase();
-            if(title.contains(searchInput)){
+            if (title.contains(searchInput)) {
                 searchResults.add(s);
             }
         }
         ui.displayMsg("Results: \n");
-        for(Movie s :searchResults){
-            System.out.println(counter +". " + s.getMediaTitle());
+        for (Movie s : searchResults) {
+            System.out.println(counter + ". " + s.getMediaTitle());
             counter++;
         }
+        int userChoice = ui.promptNumeric("Type a number to view details");
+
+        displayMediaInformation(searchResults[userChoice - 1], currentUser);
+    }
 
         public void displayMediaInformation(Media media, User currentUser) {
-            ui.displayMsg(media);
+            ui.displayMsg(media.toString());
 
             int choice = ui.promptNumeric("What do you want to do?\n1. Watch movie\n2. Add to watchlist\n3. Go back");
 
@@ -60,8 +64,4 @@ MediaManager(TextUI ui, FileIO io, User currentUser, String movieDataPath, Strin
         io.saveWatchlist(currentUser.getUsername(), currentUser.getWatchlist());
     }
 
-        int userChoice = ui.promptNumeric("Type a number to view details");
-
-        displayMediaInformation(searchResults[userChoice-1]);
-    }
 }
