@@ -19,4 +19,24 @@ public abstract class Media {
         this.genre = genre;
         this.releaseYear = releaseYear;
     }
+
+    public String getMediaTitle() {
+        return mediaTitle;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public String getReleaseYear() {
+        return releaseYear;
+    }
+
+    public String getSeasonsAndEpisodes() {
+        return seasonsAndEpisodes;
+    }
 }

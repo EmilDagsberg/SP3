@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+
 public class User {
-    String username;
-    String password;
+    private String username;
+    private String password;
+    ArrayList<Media> watchlist
 
     User(String username, String password) {
         this.username = username;
