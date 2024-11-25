@@ -77,7 +77,7 @@ class Series{
 class FileIO {
 + HashMap<String, String> readUserData(String path)
 + ArrayList<Movie> readMovieData(String path)
-+ Collection<String readSeriesData(String path)
++ ArrayList<Series> readSeriesData(String path)
 + void SaveUserData(String userAsText, String path)
 }
 
