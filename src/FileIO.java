@@ -93,8 +93,6 @@ public class FileIO {
             System.out.println("File was not found");
         }
         return seriesData;
-
-
     }
 
     public static void SaveUserData(String userAsText, String path) {
