@@ -34,6 +34,10 @@ MediaManager(TextUI ui, FileIO io, User currentUser, String movieDataPath, Strin
             counter++;
         }
 
+        public void displayMediaInformation(Media media, User currentUser) {
+
+        }
+
         private void addToWatchlist(Media media, User currentUser) {
         currentUser.addToWatchlist(media);
         ui.displayMsg("Movie added to your watchlist: " + media.getMediaTitle());
