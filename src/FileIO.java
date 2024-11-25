@@ -19,7 +19,7 @@ public class FileIO {
             while (scan.hasNextLine()) {
                 String[] userDetails = scan.nextLine().split(",");
 
-                if(userDetails.length == 2) {
+                if (userDetails.length == 2) {
                     String username = userDetails[0].trim();
                     String password = userDetails[1].trim();
                     data.put(username, password);
@@ -47,7 +47,7 @@ public class FileIO {
                 title = data[0];
                 releaseYear = data[1];
                 genres = (data[2]);
-                try{
+                try {
                     String newRating = data[3].trim().replace(',', '.');
                     rating = Double.valueOf(newRating);
                 } catch (Exception e) {
@@ -62,7 +62,7 @@ public class FileIO {
         return movieData;
     }
 
-    public static ArrayList<Series> readSeriesData(String path){
+    public static ArrayList<Series> readSeriesData(String path) {
         String title;
         String releaseYear;
         String genres;
@@ -79,7 +79,7 @@ public class FileIO {
                 title = data[0];
                 releaseYear = data[1];
                 genres = (data[2]);
-                try{
+                try {
                     String newRating = data[3].trim().replace(',', '.');
                     rating = Double.valueOf(newRating);
                 } catch (Exception e) {
@@ -98,7 +98,7 @@ public class FileIO {
     public static void SaveUserData(String userAsText, String path) {
         try {
             FileWriter writer = new FileWriter(path, true);
-                writer.write(userAsText + "\n"); //"username, password";
+            writer.write(userAsText + "\n"); //"username, password";
             writer.close();
         } catch (IOException e) {
             System.out.println("something went wrong when writing to file");
@@ -108,7 +108,7 @@ public class FileIO {
     public void saveWatchlist(String username, ArrayList<Media> watchlist) {
         try (FileWriter writer = new FileWriter("data/" + username + "_watchlist.txt", true)) {
             for (Media media : watchlist) {
-                writer.write(media.getMediaTitle() +  media.getReleaseYear() + media.getGenre() + media.getRating() + "\n");
+                writer.write(media.getMediaTitle() + media.getReleaseYear() + "\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -121,51 +121,15 @@ public class FileIO {
 
         try {
             Scanner scan = new Scanner(file);
+            while(scan.hasNextLine()) {
 
-            while (scan.hasNextLine()) {
-                String mediaInfo = scan.nextLine().trim();
-                if (!mediaInfo.isEmpty()) {
-                    // Assuming you have both Movie and Series in your Media hierarchy
-                    // You need to parse the line and recreate the appropriate object
-                    // Example for parsing Movie or Series objects:
-                    if (mediaInfo.startsWith("Movie")) {
-                        Movie movie = parseMovie(mediaInfo);  // Implement parseMovie
-                        watchlist.add(movie);
-                    } else if (mediaInfo.startsWith("Series")) {
-                        Series series = parseSeries(mediaInfo);  // Implement parseSeries
-                        watchlist.add(series);
-                    }
-                }
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("Watchlist file not found for user " + username);
         }
-        return watchlist;
-    }
-
-    // Parse a Movie from its string representation (assuming the format is consistent)
-    private Movie parseMovie(String mediaInfo) {
-        String[] parts = mediaInfo.split(", ");
-        // Example: "Movie: Title (2024), Genre, Rating"
-        String title = parts[1].trim();
-        String releaseYear = parts[2].trim().replace("(", "").replace(")", "");
-        String genre = parts[3].trim();
-        double rating = Double.parseDouble(parts[4].trim());
-        return new Movie(title, releaseYear, genre, rating);
-    }
-
-    // Parse a Series from its string representation (assuming the format is consistent)
-    private Series parseSeries(String mediaInfo) {
-        String[] parts = mediaInfo.split(", ");
-        // Example: "Series: Title (2023), Genre, 1 Season, 10 Episodes"
-        String title = parts[1].trim();
-        String releaseYear = parts[2].trim().replace("(", "").replace(")", "");
-        String genre = parts[3].trim();
-        String seasonsAndEpisodes = parts[4].trim();
-        double rating = Double.parseDouble(parts[5].trim());
-        return new Series(title, releaseYear, genre, rating, seasonsAndEpisodes);
     }
 }
+
+
+
 
 
 
