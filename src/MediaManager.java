@@ -9,9 +9,8 @@ public class MediaManager {
     private ArrayList<Series> series = new ArrayList<Series>();
     private TextUI ui = new TextUI();
     private FileIO io = new FileIO();
-    private ArrayList<Movie> movies = new ArrayList<>();
-    private ArrayList<Series> series = new ArrayList<>();
 
+MediaManager(TextUI ui, FileIO io, User currentUser, String movieDataPath, String seriesDataPath) {
         this.ui = ui;
         this.io = io;
         this.currentUser = currentUser;
