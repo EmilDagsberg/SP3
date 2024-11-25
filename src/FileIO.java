@@ -47,7 +47,12 @@ public class FileIO {
                 title = data[0];
                 releaseYear = data[1];
                 genres = (data[2]);
-                rating = Double.valueOf(data[3]);
+                try{
+                    String newRating = data[3].trim().replace(',', '.');
+                    rating = Double.valueOf(newRating);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
                 Movie newMovie = new Movie(title, releaseYear, genres, rating);
                 movieData.add(newMovie);
             }
