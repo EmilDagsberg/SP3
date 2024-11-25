@@ -47,7 +47,7 @@ public class MediaManager {
 
     public void displayMediaInformation(Media media){
 
-        //Display the information of the media object. Use media.getMediaTitle()
+        //Display the information of the media object. sout(media), altså toString metoden skal kaldes for at vise information om filmen
 
         //Display a numbered menu that gives the user choices of what to do with the given media. Switch case etc.
 
