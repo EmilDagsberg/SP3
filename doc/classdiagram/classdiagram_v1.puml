@@ -34,10 +34,10 @@ class MediaManager {
 - ArrayList<Series> series
 + MediaManager(ui, io, User currentUser, movieDataPath, seriesDataPath)
 + void searchByTitle()
-+ void displayInformation()
++ void displayMediaInformation()
 + void playMedia()
-+ void searchByGenre
-+ void addToWatchlist
++ void searchByGenre()
++ void addToWatchlist()
 +
 
 }
