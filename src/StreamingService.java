@@ -22,7 +22,7 @@ public class StreamingService {
         this.userDataPath = "data/userData.csv";
         this.userData = io.readUserData(this.userDataPath);
         //this.users = new ArrayList<User>();
-        this.manager = new MediaManager(ui, io, currentUser, movieDataPath, seriesDataPath);
+        this.manager = new MediaManager(ui, io, this.currentUser, movieDataPath, seriesDataPath);
     }
 
     void startStreamingService() {

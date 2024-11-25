@@ -35,10 +35,10 @@ MediaManager(TextUI ui, FileIO io, User currentUser, String movieDataPath, Strin
         }
         int userChoice = ui.promptNumeric("Type a number to view details");
 
-        displayMediaInformation(searchResults.get(userChoice - 1), currentUser);
+        displayMediaInformation(searchResults.get(userChoice - 1));
     }
 
-        public void displayMediaInformation(Media media, User currentUser) {
+        public void displayMediaInformation(Media media) {
             ui.displayMsg(media.toString());
 
             int choice = ui.promptNumeric("What do you want to do?\n1. Watch movie\n2. Add to watchlist\n3. Go back");
@@ -48,7 +48,7 @@ MediaManager(TextUI ui, FileIO io, User currentUser, String movieDataPath, Strin
                     // watch media method
                     break;
                 case 2:
-                    addToWatchlist(media, currentUser);
+                    addToWatchlist(media);
                     break;
                 case 3:
                     ui.displayMsg("Going back...");
@@ -58,8 +58,8 @@ MediaManager(TextUI ui, FileIO io, User currentUser, String movieDataPath, Strin
             }
         }
 
-        private void addToWatchlist(Media media, User currentUser) {
-        currentUser.addToWatchlist(media);
+        private void addToWatchlist(Media media) {
+        this.currentUser.addToWatchlist(media);
         ui.displayMsg("Movie added to your watchlist: " + media.getMediaTitle());
         io.saveWatchlist(currentUser.getUsername(), currentUser.getWatchlist());
     }
