@@ -87,9 +87,6 @@ public class FileIO {
             while (scan.hasNextLine()) {
                 String mediaInfo = scan.nextLine().trim();
                 if (!mediaInfo.isEmpty()) {
-                    // Assuming you have both Movie and Series in your Media hierarchy
-                    // You need to parse the line and recreate the appropriate object
-                    // Example for parsing Movie or Series objects:
                     if (mediaInfo.startsWith("Movie")) {
                         Movie movie = parseMovie(mediaInfo);  // Implement parseMovie
                         watchlist.add(movie);

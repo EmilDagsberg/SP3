@@ -90,7 +90,7 @@ public class StreamingService {
                 break;
             case 4:
                 // call on method to see a list of saved movies that you want to watch.
-                ui.displayMsg("Seeing watchlist");
+                currentUser.displayWatchlist();
                 break;
             case 5:
                 // call on method to log out and close the program. Probably don't need a method. Just print that you are logging out.
