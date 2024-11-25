@@ -35,19 +35,16 @@ MediaManager(TextUI ui, FileIO io, User currentUser, String movieDataPath, Strin
         }
 
         public void displayMediaInformation(Media media, User currentUser) {
-            ui.displayMsg("Title: " + movie.getMediaTitle());
-            ui.displayMsg("Release Year: " + movie.getReleaseYear());
-            ui.displayMsg("Genre: " + movie.getGenre());
-            ui.displayMsg("Rating: " + movie.getRating());
+            ui.displayMsg(media);
 
             int choice = ui.promptNumeric("What do you want to do?\n1. Watch movie\n2. Add to watchlist\n3. Go back");
 
             switch (choice) {
                 case 1:
-                    watchMovie(movie);
+                    // watch media method
                     break;
                 case 2:
-                    addToWatchlist(movie, currentUser);
+                    addToWatchlist(media, currentUser);
                     break;
                 case 3:
                     ui.displayMsg("Going back...");
