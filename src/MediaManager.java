@@ -19,7 +19,7 @@ public class MediaManager {
     public void searchByTitle(User currentUser) {
         this.currentUser = currentUser;
         String searchInput = ui.promptText("Enter your searchword:");
-        ArrayList<Movie> searchResults = new ArrayList<Movie>(); //list to contain results from search
+        ArrayList<Media> searchResults = new ArrayList<Media>(); //list to contain results from search
         int counter = 1;
         for (Movie s : movies) {
             String title = s.getMediaTitle().toLowerCase();
@@ -27,14 +27,21 @@ public class MediaManager {
                 searchResults.add(s);
             }
         }
+        for(Series s : series){
+            String title = s.getMediaTitle().toLowerCase();
+            if(title.contains(searchInput)){
+                searchResults.add(s);
+            }
+        }
         ui.displayMsg("Results: \n");
-        for (Movie s : searchResults) {
-            System.out.println(counter + ". " + s.getMediaTitle());
+        for(Media s :searchResults){
+            System.out.println(counter +". " + s.getMediaTitle());
             counter++;
         }
+
         int userChoice = ui.promptNumeric("Type a number to view details");
 
-        displayMediaInformation(searchResults.get(userChoice - 1));
+        displayMediaInformation(searchResults[userChoice-1]);
     }
 
     public void displayMediaInformation(Media media) {
