@@ -41,7 +41,7 @@ public class MediaManager {
 
         int userChoice = ui.promptNumeric("Type a number to view details");
 
-        displayMediaInformation(searchResults[userChoice-1]);
+        displayMediaInformation(searchResults.get(userChoice-1));
     }
 
     public void displayMediaInformation(Media media) {
