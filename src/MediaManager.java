@@ -13,6 +13,7 @@ public class MediaManager {
         this.ui = ui;
         this.io = io;
         this.movies = io.readMovieData(movieDataPath);
+        this.series = io.readSeriesData(seriesDataPath);
         this.streamingService = streamingService;
     }
 
