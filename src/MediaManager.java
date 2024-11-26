@@ -94,4 +94,30 @@ public class MediaManager {
             watchlistInteraction(currentUser);  // Rekursiv kald, så brugeren må vælge igen.
         }
     }
+    public void searchByGenre(){
+        String searchInput = ui.promptText("Enter your searchword:");
+        ArrayList<Media> searchResults = new ArrayList<Media>(); //list to contain results from search
+        int counter = 1;
+        for(Movie s : movies){
+            String title = s.getMediaGenre().toLowerCase();
+            if(title.contains(searchInput)){
+                searchResults.add(s);
+            }
+        }
+        for(Series s : series){
+            String title = s.getMediaGenre().toLowerCase();
+            if(title.contains(searchInput)){
+                searchResults.add(s);
+            }
+        }
+        ui.displayMsg("Results: \n");
+        for(Media s :searchResults){
+            System.out.println(counter +". " + s.getMediaTitle());
+            counter++;
+        }
+
+        int userChoice = ui.promptNumeric("Type a number to view details");
+
+        displayMediaInformation(searchResults.get(userChoice-1));
+    }
 }
