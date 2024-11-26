@@ -19,7 +19,7 @@ public class MediaManager {
 
     public void searchByTitle(User currentUser) {
         this.currentUser = currentUser;
-        String searchInput = ui.promptText("Enter your searchword:");
+        String searchInput = ui.promptText("Searching by title. Enter your searchword:");
         ArrayList<Media> searchResults = new ArrayList<Media>(); //list to contain results from search
         int counter = 1;
         for (Movie s : movies) {
@@ -33,6 +33,10 @@ public class MediaManager {
             if(title.contains(searchInput)){
                 searchResults.add(s);
             }
+        }
+        if(searchResults.isEmpty()){
+            ui.displayMsg("No results.");
+            streamingService.homeMenu();
         }
         ui.displayMsg("Results: \n");
         for(Media s :searchResults){
@@ -52,7 +56,6 @@ public class MediaManager {
 
         switch (choice) {
             case 1:
-
                 PlayMedia(media);
                 break;
             case 2:
@@ -64,6 +67,9 @@ public class MediaManager {
                 ui.displayMsg("Going back...");
                 searchByTitle(currentUser);
                 break;
+            case 4:
+                ui.displayMsg("Going back to Home menu");
+                streamingService.homeMenu();
             default:
                 ui.displayMsg("Invalid choice. Going back...");
                 streamingService.homeMenu();
@@ -111,7 +117,7 @@ public class MediaManager {
         }
     }
     public void searchByGenre(){
-        String searchInput = ui.promptText("Enter your searchword:");
+        String searchInput = ui.promptText("Searching by genre. Enter your searchword:");
         ArrayList<Media> searchResults = new ArrayList<Media>(); //list to contain results from search
         int counter = 1;
         for(Movie s : movies){
@@ -125,6 +131,10 @@ public class MediaManager {
             if(title.contains(searchInput)){
                 searchResults.add(s);
             }
+        }
+        if(searchResults.isEmpty()){
+            ui.displayMsg("No results.");
+            streamingService.homeMenu();
         }
         ui.displayMsg("Results: \n");
         for(Media s :searchResults){
