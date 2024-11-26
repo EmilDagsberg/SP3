@@ -86,7 +86,7 @@ public class StreamingService {
                 manager.searchByTitle(this.currentUser);
                 break;
             case 2:
-                // call on method to search on a genre and get all movies and series in that genre.
+                manager.searchByGenre();
                 ui.displayMsg("Searching genre");
                 break;
             case 3:
