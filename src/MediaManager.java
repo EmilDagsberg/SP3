@@ -52,7 +52,6 @@ public class MediaManager {
 
         switch (choice) {
             case 1:
-
                 PlayMedia(media);
                 break;
             case 2:
@@ -72,6 +71,7 @@ public class MediaManager {
 
     public void PlayMedia(Media media){
         ui.displayMsg("You are now watching: " + media.getMediaTitle());
+        currentUser.addToPrevWatchedList(media);
         ui.displayMsg("You have finished watching");
         streamingService.homeMenu();
 
@@ -136,4 +136,32 @@ public class MediaManager {
 
         displayMediaInformation(searchResults.get(userChoice-1));
     }
+
+    public void prevWatchedlistInteraction(User currentUser) {
+        this.currentUser = currentUser;
+        if (currentUser.getPrevWatched().isEmpty()) {
+        ui.displayMsg("Your watchlist is empty.");
+        streamingService.homeMenu();  // Go back to the home menu if the watchlist is empty
+        return;
+    }
+        ui.displayMsg("Your Watchlist:"); // Viser ens watchlist med et nummer foran.
+        int counter = 1;
+        for (Media media : currentUser.getPrevWatched()) {
+        ui.displayMsg(counter + ". " + media.getMediaTitle() + " (" + media.getReleaseYear() +")");
+        counter++;
+    }
+
+    int userChoice = ui.promptNumeric("Choose a movie/series number to start watching, or 0 to go back");
+
+        if (userChoice == 0) {
+        ui.displayMsg("Going back...");
+        streamingService.homeMenu();
+    } else if (userChoice > 0 && userChoice <= currentUser.getPrevWatched().size()) {
+        Media chosenMedia = currentUser.getPrevWatched().get(userChoice - 1); // Det nummer som brugeren skrev (-1) er det index i arraylisten.
+        PlayMedia(chosenMedia);
+    } else {
+        ui.displayMsg("Invalid choice, going back...");
+        prevWatchedlistInteraction(currentUser);  // Rekursiv kald, så brugeren må vælge igen.
+    }
+}
 }

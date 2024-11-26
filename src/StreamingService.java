@@ -78,8 +78,14 @@ public class StreamingService {
         currentUser.watchlist = watchlist; // Den loade watchlist bliver sat til watchlisten. Så data bliver gemt selv efter lukning af program.
     }
 
+    public void loadPrevWatched() {
+        ArrayList<Media> prevWatchedlist = io.loadPrevWatched(currentUser.getUsername());
+        currentUser.prevWatched = prevWatchedlist;
+    }
+
     public void homeMenu() {
         loadWatchlist(); // Loader watchlisten med det samme, så hvis man adder en ny film, så bliver det ikke overwritet
+        loadPrevWatched();
         int choice = ui.displayHomeMenu("Type number:");
         switch (choice) {
             case 1:
@@ -90,8 +96,7 @@ public class StreamingService {
                 ui.displayMsg("Searching genre");
                 break;
             case 3:
-                // call on method to see a list of previously watched movies and series.
-                ui.displayMsg("Seeing previously watched media");
+                manager.prevWatchedlistInteraction(this.currentUser);
                 break;
             case 4:
                 manager.watchlistInteraction(currentUser);

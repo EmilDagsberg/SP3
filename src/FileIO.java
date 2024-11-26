@@ -155,6 +155,58 @@ public class FileIO {
         }
         return watchlist;
     }
+
+    public void savePrevWatched(String username, ArrayList<Media> prevWatched) {
+        try (FileWriter writer = new FileWriter("data/prevWatchedlistData/" + username + "_prevWatchedlist.txt", false)) {
+            for (Media media : prevWatched) {
+                if(media instanceof Movie) {
+                    writer.write("movie; " + media.getMediaTitle() + "; " + media.getReleaseYear() + "; " + media.getGenre() + "; " + media.getRating() + "\n");
+                }
+                if(media instanceof Series) {
+                    writer.write("series; " + media.getMediaTitle() + "; " + media.getReleaseYear() + "; " + media.getGenre() + "; " + media.getRating() + "; " + media.getSeasonsAndEpisodes() + "\n");
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<Media> loadPrevWatched(String username) {
+        // Ligesom vi gør i load film og serieData. Her løber jeg tidligere watchlistdata. Laver nye objekter med dem. Og smider dem i et nyt array.
+        // Som så bliver til currentUsers.
+        String type;
+        String title;
+        String releaseYear;
+        String genres;
+        Double rating;
+        String seasonsAndEpisodes;
+        ArrayList<Media> watchlist = new ArrayList();
+        File file = new File("data/prevWatchedlistData/" + username + "_prevWatchedlist.txt");
+
+        try (Scanner scan = new Scanner(file)){
+            while(scan.hasNextLine()) {
+                String line = scan.nextLine();
+                String[] data = line.split(";");
+                type = data[0].trim();
+                title = data[1].trim();
+                releaseYear = data[2].trim();
+                genres = data[3].trim();
+                rating = Double.valueOf(data[4].trim());
+                if(type.equalsIgnoreCase("movie")) {
+                    Media media = new Movie(title, releaseYear, genres, rating);
+                    watchlist.add(media);
+                } else if(type.equalsIgnoreCase("series")) {
+                    seasonsAndEpisodes = data[5].trim();
+                    Media media = new Series(title, releaseYear, genres, rating, seasonsAndEpisodes);
+                    watchlist.add(media);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            //System.out.println("Watchlist was not found");
+        }
+        return watchlist;
+    }
+
 }
 
 

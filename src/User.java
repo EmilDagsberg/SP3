@@ -4,7 +4,9 @@ public class User {
     private String username;
     private String password;
     ArrayList<Media> watchlist;
+    ArrayList<Media> prevWatched;
     TextUI ui = new TextUI();
+    FileIO io = new FileIO();
 
     User(String username, String password) {
         this.username = username;
@@ -26,11 +28,20 @@ public class User {
         }
     }
 
+    public void addToPrevWatchedList(Media media) {
+        prevWatched.add(media);
+        io.savePrevWatched(this.username, this.prevWatched);
+    }
+
     public String getUsername() {
         return username;
     }
 
     public ArrayList<Media> getWatchlist() {
         return watchlist;
+    }
+
+    public ArrayList<Media> getPrevWatched() {
+        return prevWatched;
     }
 }
