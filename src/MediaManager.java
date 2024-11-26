@@ -71,7 +71,7 @@ public class MediaManager {
 
     private void addToWatchlist(Media media) {
         currentUser.addToWatchlist(media); // add mediet til currentUsers watchlist
-        ui.displayMsg("Movie added to your watchlist: " + media.getMediaTitle());
+        ui.displayMsg("Movie/Series added to your watchlist: " + media.getMediaTitle());
         io.saveWatchlist(currentUser.getUsername(), currentUser.getWatchlist()); // gemmer så mediet i users unikke watchlistfil
     }
 
