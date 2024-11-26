@@ -72,7 +72,7 @@ public class MediaManager {
 
     public void PlayMedia(Media media){
         ui.displayMsg("You are now watching: " + media.getMediaTitle());
-        ui.displayMsg("You have finished watching";
+        ui.displayMsg("You have finished watching");
         streamingService.homeMenu();
 
     }
