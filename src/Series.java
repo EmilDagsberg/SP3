@@ -5,6 +5,10 @@ public class Series extends Media {
 
     @Override
     public String toString() {
-        return "Title: " + this.mediaTitle + " ReleaseYear: " + this.releaseYear + " Genre: " + this.genre + " Rating: " + this.rating + " SeasonsAndEpisodes: " + this.seasonsAndEpisodes;
+        return "Title: " + this.mediaTitle + "\n" +
+            "ReleaseYear: " + this.releaseYear + "\n" +
+            "Genre: " + this.genre + "\n" +
+            "Rating: " + this.rating + "\n" +
+            "SeasonsAndEpisodes: " + this.seasonsAndEpisodes;
     }
 }
