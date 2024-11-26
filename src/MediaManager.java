@@ -52,7 +52,8 @@ public class MediaManager {
 
         switch (choice) {
             case 1:
-                // watch media method
+
+                PlayMedia(media);
                 break;
             case 2:
                 addToWatchlist(media);
@@ -101,7 +102,7 @@ public class MediaManager {
             streamingService.homeMenu();
         } else if (userChoice > 0 && userChoice <= currentUser.getWatchlist().size()) {
             Media chosenMedia = currentUser.getWatchlist().get(userChoice - 1); // Det nummer som brugeren skrev (-1) er det index i arraylisten.
-            ui.displayMsg("You are now watching: " + chosenMedia.getMediaTitle()); // !!! KALD PÅ PLAYMEDIA METODEN NÅR DEN ER LAVET.
+            PlayMedia(chosenMedia);
         } else {
             ui.displayMsg("Invalid choice, going back...");
             watchlistInteraction(currentUser);  // Rekursiv kald, så brugeren må vælge igen.
