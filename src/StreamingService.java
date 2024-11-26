@@ -41,14 +41,23 @@ public class StreamingService {
 
     void createUser() {
         String username = ui.promptText("Type username:");
-        while(userData.containsKey(username)) { // Loop der altid tjekker om det nye username allerede eksistere.
-            ui.displayMsg("Username already exists. Please choose different username");
+        while (username.length() < 4 || username.length() > 25) {
+            ui.displayMsg("Username must be between 4 and 25 characters");
             username = ui.promptText("Type username:");
         }
+        while (userData.containsKey(username)) { // Loop der altid tjekker om det nye username allerede eksistere.
+            ui.displayMsg("Username already exists. Please choose different username");
+            username = ui.promptText("Type username:");
+            }
         String password = ui.promptText("Type password:");
-        currentUser = new User(username, password);
-        this.addUser(currentUser);
-    }
+        while (password.length() < 4 || password.length() > 25) {
+            ui.displayMsg("Password must be between 4 and 25 characters");
+            password = ui.promptText("Type password:");
+        }
+            currentUser = new User(username, password);
+            this.addUser(currentUser);
+        }
+
 
     public void addUser(User u) {
         FileIO.SaveUserData(u.toString(), this.userDataPath);
