@@ -151,7 +151,7 @@ public class FileIO {
                 }
                 }
         } catch (FileNotFoundException e) {
-            System.out.println("Watchlist was not found");
+            //System.out.println("Watchlist was not found");
         }
         return watchlist;
     }

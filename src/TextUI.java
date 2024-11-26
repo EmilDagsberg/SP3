@@ -15,9 +15,6 @@ public class TextUI {
         return choice;
     }
 
-
-
-
     public int promptNumeric(String msg) {
         System.out.println(msg);              // Stille brugeren et spørgsmål
         String input = scan.nextLine();
