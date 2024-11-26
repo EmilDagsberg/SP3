@@ -19,7 +19,7 @@ public class FileIO {
             while (scan.hasNextLine()) {
                 String[] userDetails = scan.nextLine().split(",");
 
-                if(userDetails.length == 2) {
+                if (userDetails.length == 2) {
                     String username = userDetails[0].trim();
                     String password = userDetails[1].trim();
                     data.put(username, password);
@@ -47,7 +47,7 @@ public class FileIO {
                 title = data[0];
                 releaseYear = data[1];
                 genres = (data[2]);
-                try{
+                try {
                     String newRating = data[3].trim().replace(',', '.');
                     rating = Double.valueOf(newRating);
                 } catch (Exception e) {
@@ -62,7 +62,7 @@ public class FileIO {
         return movieData;
     }
 
-    public static ArrayList<Series> readSeriesData(String path){
+    public static ArrayList<Series> readSeriesData(String path) {
         String title;
         String releaseYear;
         String genres;
@@ -79,7 +79,7 @@ public class FileIO {
                 title = data[0];
                 releaseYear = data[1];
                 genres = (data[2]);
-                try{
+                try {
                     String newRating = data[3].trim().replace(',', '.');
                     rating = Double.valueOf(newRating);
                 } catch (Exception e) {
@@ -98,32 +98,55 @@ public class FileIO {
     public static void SaveUserData(String userAsText, String path) {
         try {
             FileWriter writer = new FileWriter(path, true);
-                writer.write(userAsText + "\n"); //"username, password";
+            writer.write(userAsText + "\n"); //"username, password";
             writer.close();
         } catch (IOException e) {
             System.out.println("something went wrong when writing to file");
         }
     }
 
-    /* public String[] readWatchListData(String path, int length) {
-        String[] data = new String[length];
-        File file = new File(path);
-        int counter = 0;
-
-        try {
-            Scanner scan = new Scanner(file);
-            scan.nextLine();
-
-            while (scan.hasNextLine()) {
-                String line = scan.nextLine();
-                data[counter] = line;
-                counter++;
+    public void saveWatchlist(String username, ArrayList<Media> watchlist) {
+        try (FileWriter writer = new FileWriter("data/watchlistData/" + username + "_watchlist.txt", false)) {
+            for (Media media : watchlist) {
+                writer.write(media.getMediaTitle() + "; " + media.getReleaseYear() + "; " + media.getGenre() + "; " + media.getRating() + "\n");
             }
-
-        } catch (FileNotFoundException e) {
-            System.out.println("File was not found");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return data;
+    }
 
-    } */
+    public ArrayList<Media> loadWatchlist(String username) {
+        // Ligesom vi gør i load film og serieData. Her løber jeg tidligere watchlistdata. Laver nye objekter med dem. Og smider dem i et nyt array.
+        // Som så bliver til currentUsers.
+        String title;
+        String releaseYear;
+        String genres;
+        Double rating;
+        ArrayList<Media> watchlist = new ArrayList();
+        File file = new File("data/watchlistData/" + username + "_watchlist.txt");
+
+        try (Scanner scan = new Scanner(file)){
+            while(scan.hasNextLine()) {
+                String line = scan.nextLine();
+                String[] data = line.split(";");
+                title = data[0].trim();
+                releaseYear = data[1].trim();
+                genres = data[2].trim();
+                rating = Double.valueOf(data[3].trim());
+                Media media = new Movie(title, releaseYear, genres, rating);
+                watchlist.add(media);
+                }
+        } catch (FileNotFoundException e) {
+            System.out.println("Watchlist was not found");
+        }
+        return watchlist;
+    }
 }
+
+
+
+
+
+
+
+

@@ -1,0 +1,4 @@
+The Godfather;  1972;  Crime, Drama; 9.2
+12 Angry Men;  1957;  Crime, Drama; 8.9
+Taxi Driver;  1976;  Crime, Drama; 8.3
+Jurassic Park;  1993;  Adventure, Sci-fi, Thriller; 8.1
