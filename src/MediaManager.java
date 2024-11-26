@@ -35,7 +35,7 @@ public class MediaManager {
         }
         ui.displayMsg("Results: \n");
         for(Media s :searchResults){
-            System.out.println(counter +". " + s.getMediaTitle());
+            ui.displayMsg(counter +". " + s.getMediaTitle());
             counter++;
         }
 
@@ -106,13 +106,13 @@ public class MediaManager {
         ArrayList<Media> searchResults = new ArrayList<Media>(); //list to contain results from search
         int counter = 1;
         for(Movie s : movies){
-            String title = s.getMediaGenre().toLowerCase();
+            String title = s.getGenre().toLowerCase();
             if(title.contains(searchInput)){
                 searchResults.add(s);
             }
         }
         for(Series s : series){
-            String title = s.getMediaGenre().toLowerCase();
+            String title = s.getGenre().toLowerCase();
             if(title.contains(searchInput)){
                 searchResults.add(s);
             }
