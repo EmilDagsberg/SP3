@@ -69,6 +69,11 @@ public class MediaManager {
             }
         }
 
+    public void PlayMedia(Media media){
+        ui.displayMsg("You are now watching: \" "+ media.getMediaTitle());
+
+    }
+
     private void addToWatchlist(Media media) {
         currentUser.addToWatchlist(media); // add mediet til currentUsers watchlist
         ui.displayMsg("Movie added to your watchlist: " + media.getMediaTitle());
