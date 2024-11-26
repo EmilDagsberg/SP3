@@ -92,7 +92,7 @@ public class MediaManager {
     public void watchlistInteraction(User currentUser) {
         this.currentUser = currentUser;
         if (currentUser.getWatchlist().isEmpty()) {
-            ui.displayMsg("Your watchlist is empty.");
+            ui.displayMsg("Your watchlist is empty." + "\n");
             streamingService.homeMenu();  // Go back to the home menu if the watchlist is empty
             return;
         }
