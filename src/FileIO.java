@@ -35,7 +35,7 @@ public class FileIO {
         String title;
         String releaseYear;
         String genres;
-        Double rating;
+        double rating;
         ArrayList<Movie> movieData = new ArrayList();
         File file = new File(path);
         try {
@@ -44,9 +44,9 @@ public class FileIO {
             while (scan.hasNextLine()) {
                 String line = scan.nextLine(); // "title; release year; etc."
                 String[] data = line.split(";"); //splits a line into 4 Strings containing Title/ReleaseYear/Genres/Rating"
-                title = data[0];
-                releaseYear = data[1];
-                genres = (data[2]);
+                title = data[0].trim();
+                releaseYear = data[1].trim();
+                genres = (data[2].trim());
                 try {
                     String newRating = data[3].trim().replace(',', '.');
                     rating = Double.valueOf(newRating);
@@ -66,7 +66,7 @@ public class FileIO {
         String title;
         String releaseYear;
         String genres;
-        Double rating;
+        double rating;
         String seasonsAndEpisodes;
         ArrayList<Series> seriesData = new ArrayList();
         File file = new File(path);
@@ -76,16 +76,16 @@ public class FileIO {
             while (scan.hasNextLine()) {
                 String line = scan.nextLine(); // "title; release year; etc."
                 String[] data = line.split(";"); //splits a line into 4 Strings containing Title/ReleaseYear/Genres/Rating"
-                title = data[0];
-                releaseYear = data[1];
-                genres = (data[2]);
+                title = data[0].trim();
+                releaseYear = data[1].trim();
+                genres = (data[2].trim());
                 try {
                     String newRating = data[3].trim().replace(',', '.');
                     rating = Double.valueOf(newRating);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-                seasonsAndEpisodes = data[4];
+                seasonsAndEpisodes = data[4].trim();
                 Series newSeries = new Series(title, releaseYear, genres, rating, seasonsAndEpisodes);
                 seriesData.add(newSeries);
             }
@@ -134,7 +134,7 @@ public class FileIO {
                 String title = data[1].trim();
                 String releaseYear = data[2].trim();
                 String genres = data[3].trim();
-                Double rating = Double.valueOf(data[4].trim());
+                double rating = Double.valueOf(data[4].trim());
                 if(type.equalsIgnoreCase("movie")) {
                     mediaList.add(new Movie(title, releaseYear, genres, rating));
                 } else if(type.equalsIgnoreCase("series")) {
@@ -149,19 +149,19 @@ public class FileIO {
     }
 
     public void saveWatchlist(String username, ArrayList<Media> watchlist) {
-        saveMediaList(username, watchlist, "watchlistData");
+        saveMediaList(username, watchlist, "watchlist");
     }
 
     public ArrayList<Media> loadWatchlist(String username) {
-        return loadMediaList(username, "watchlistData");
+        return loadMediaList(username, "watchlist");
     }
 
     public void savePrevWatched(String username, ArrayList<Media> prevWatched) {
-        saveMediaList(username, prevWatched, "prevWatchedlistData");
+        saveMediaList(username, prevWatched, "prevWatchedlist");
     }
 
     public ArrayList<Media> loadPrevWatched(String username) {
-        return loadMediaList(username, "prevWatchedlistData");
+        return loadMediaList(username, "prevWatchedlist");
     }
 }
 

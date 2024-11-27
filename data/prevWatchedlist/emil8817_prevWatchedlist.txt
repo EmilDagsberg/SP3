@@ -2,4 +2,5 @@ series; Twin Peaks; 1990-1991; Crime, Drama, Mystery; 8.8; 1-8, 2-22
 movie; The Godfather part II; 1974; Crime, Drama; 9.0
 series; Twin Peaks; 1990-1991; Crime, Drama, Mystery; 8.8; 1-8, 2-22
 series; Dexter; 2006-2013; Crime, Drama, Mystery; 8.7; 1-12, 2-12, 3-12, 4-12, 5-12, 6-12, 7-12,8-12
-series; Twin Peaks;  1990-1991;  Crime, Drama, Mystery; 8.8;  1-8, 2-22
+series; Twin Peaks; 1990-1991; Crime, Drama, Mystery; 8.8; 1-8, 2-22
+movie; Jurassic Park;  1993;  Adventure, Sci-fi, Thriller; 8.1

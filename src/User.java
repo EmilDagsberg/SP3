@@ -12,6 +12,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.watchlist = new ArrayList<>();
+        this.prevWatched = new ArrayList<>();
     }
 
     @Override
@@ -23,6 +24,8 @@ public class User {
     public void addToWatchlist(Media media) {
         if(!watchlist.contains(media)) {
             watchlist.add(media);
+            ui.displayMsg("Movie/Series added to your watchlist: " + media.getMediaTitle());
+            io.saveWatchlist(this.username, this.watchlist); // gemmer så mediet i users unikke watchlistfil
         } else {
             ui.displayMsg("This media is already in the watchlist");
         }

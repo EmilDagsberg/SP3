@@ -91,7 +91,7 @@ public class MediaManager {
                 PlayMedia(media);
                 break;
             case 2:
-                addToWatchlist(media);
+                currentUser.addToWatchlist(media);
                 ui.displayMsg("Going back...");
                 streamingService.homeMenu();
                 break;
@@ -112,11 +112,6 @@ public class MediaManager {
 
     }
 
-    private void addToWatchlist(Media media) {
-        currentUser.addToWatchlist(media); // add mediet til currentUsers watchlist
-        ui.displayMsg("Movie/Series added to your watchlist: " + media.getMediaTitle());
-        io.saveWatchlist(currentUser.getUsername(), currentUser.getWatchlist()); // gemmer så mediet i users unikke watchlistfil
-    }
 
     public void medialistInteraction(User currentUser, List<Media> mediaList, String listName) {
         if (mediaList.isEmpty()) {

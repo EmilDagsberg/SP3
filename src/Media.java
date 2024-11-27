@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public abstract class Media {
     protected String mediaTitle;
     protected double rating;
@@ -6,9 +8,9 @@ public abstract class Media {
     protected String seasonsAndEpisodes;
 
     public Media(String mediaTitle, String releaseYear, String genre, double rating, String seasonsAndEpisodes){
-        this.mediaTitle = mediaTitle;
-        this.releaseYear = releaseYear;
-        this.genre = genre;
+        this.mediaTitle = mediaTitle.trim();
+        this.releaseYear = releaseYear.trim();
+        this.genre = genre.trim();
         this.rating = rating;
         this.seasonsAndEpisodes = seasonsAndEpisodes;
     }
@@ -39,4 +41,5 @@ public abstract class Media {
     public String getSeasonsAndEpisodes() {
         return seasonsAndEpisodes;
     }
+
 }

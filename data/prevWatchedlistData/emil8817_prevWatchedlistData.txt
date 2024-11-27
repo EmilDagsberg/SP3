@@ -1,3 +1,0 @@
-series; Californication; 2007-2014; Comedy, Drama; 8.3; 1-12, 2-12, 3-12, 4-12, 5-12, 6-12, 7-12
-movie; Schindler's List; 1993; Biography, Drama, History; 8.9
-movie; Lord Of The Rings - The Return Of The King;  2003;  Action, Adventure, Drama; 8.9
