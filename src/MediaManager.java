@@ -64,10 +64,6 @@ public class MediaManager {
                 streamingService.homeMenu();
                 break;
             case 3:
-                ui.displayMsg("Going back...");
-                searchByTitle(currentUser);
-                break;
-            case 4:
                 ui.displayMsg("Going back to Home menu");
                 streamingService.homeMenu();
             default:
