@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class MediaManager {
     private User currentUser;
@@ -28,25 +29,56 @@ public class MediaManager {
                 searchResults.add(s);
             }
         }
-        for(Series s : series){
+        for (Series s : series) {
             String title = s.getMediaTitle().toLowerCase();
-            if(title.contains(searchInput)){
+            if (title.contains(searchInput)) {
                 searchResults.add(s);
             }
         }
-        if(searchResults.isEmpty()){
+        if (searchResults.isEmpty()) {
             ui.displayMsg("No results.");
             streamingService.homeMenu();
         }
         ui.displayMsg("Results: \n");
-        for(Media s :searchResults){
-            ui.displayMsg(counter +". " + s.getMediaTitle());
+        for (Media s : searchResults) {
+            ui.displayMsg(counter + ". " + s.getMediaTitle());
             counter++;
         }
 
         int userChoice = ui.promptNumeric("Type a number to view details");
 
-        displayMediaInformation(searchResults.get(userChoice-1));
+        displayMediaInformation(searchResults.get(userChoice - 1));
+    }
+
+    public void searchByGenre() {
+        String searchInput = ui.promptText("Searching by genre. Enter your searchword:");
+        ArrayList<Media> searchResults = new ArrayList<Media>(); //list to contain results from search
+        int counter = 1;
+        for (Movie s : movies) {
+            String title = s.getGenre().toLowerCase();
+            if (title.contains(searchInput)) {
+                searchResults.add(s);
+            }
+        }
+        for (Series s : series) {
+            String title = s.getGenre().toLowerCase();
+            if (title.contains(searchInput)) {
+                searchResults.add(s);
+            }
+        }
+        if (searchResults.isEmpty()) {
+            ui.displayMsg("No results.");
+            streamingService.homeMenu();
+        }
+        ui.displayMsg("Results: \n");
+        for (Media s : searchResults) {
+            System.out.println(counter + ". " + s.getMediaTitle());
+            counter++;
+        }
+
+        int userChoice = ui.promptNumeric("Type a number to view details");
+
+        displayMediaInformation(searchResults.get(userChoice - 1));
     }
 
     public void displayMediaInformation(Media media) {
@@ -73,10 +105,10 @@ public class MediaManager {
             default:
                 ui.displayMsg("Invalid choice. Going back...");
                 streamingService.homeMenu();
-            }
         }
+    }
 
-    public void PlayMedia(Media media){
+    public void PlayMedia(Media media) {
         ui.displayMsg("You are now watching: " + media.getMediaTitle());
         currentUser.addToPrevWatchedList(media);
         ui.displayMsg("You have finished watching");
@@ -90,17 +122,16 @@ public class MediaManager {
         io.saveWatchlist(currentUser.getUsername(), currentUser.getWatchlist()); // gemmer så mediet i users unikke watchlistfil
     }
 
-    public void watchlistInteraction(User currentUser) {
-        this.currentUser = currentUser;
-        if (currentUser.getWatchlist().isEmpty()) {
-            ui.displayMsg("Your watchlist is empty." + "\n");
+    public void medialistInteraction(User currentUser, List<Media> mediaList, String listName) {
+        if (mediaList.isEmpty()) {
+            ui.displayMsg("Your " + listName + " is empty.");
             streamingService.homeMenu();  // Go back to the home menu if the watchlist is empty
             return;
         }
-        ui.displayMsg("Your Watchlist:"); // Viser ens watchlist med et nummer foran.
+        ui.displayMsg("Your" + listName); // Viser ens watchlist med et nummer foran.
         int counter = 1;
-        for (Media media : currentUser.getWatchlist()) {
-            ui.displayMsg(counter + ". " + media.getMediaTitle() + " (" + media.getReleaseYear() +")");
+        for (Media media : mediaList) {
+            ui.displayMsg(counter + ". " + media.getMediaTitle() + " (" + media.getReleaseYear() + ")");
             counter++;
         }
 
@@ -110,69 +141,21 @@ public class MediaManager {
             ui.displayMsg("Going back...");
             streamingService.homeMenu();
         } else if (userChoice > 0 && userChoice <= currentUser.getWatchlist().size()) {
-            Media chosenMedia = currentUser.getWatchlist().get(userChoice - 1); // Det nummer som brugeren skrev (-1) er det index i arraylisten.
+            Media chosenMedia = mediaList.get(userChoice - 1); // Det nummer som brugeren skrev (-1) er det index i arraylisten.
             PlayMedia(chosenMedia);
         } else {
             ui.displayMsg("Invalid choice, going back...");
-            watchlistInteraction(currentUser);  // Rekursiv kald, så brugeren må vælge igen.
+            medialistInteraction(currentUser, mediaList, listName);  // Rekursiv kald, så brugeren må vælge igen.
         }
     }
-    public void searchByGenre(){
-        String searchInput = ui.promptText("Searching by genre. Enter your searchword:");
-        ArrayList<Media> searchResults = new ArrayList<Media>(); //list to contain results from search
-        int counter = 1;
-        for(Movie s : movies){
-            String title = s.getGenre().toLowerCase();
-            if(title.contains(searchInput)){
-                searchResults.add(s);
-            }
-        }
-        for(Series s : series){
-            String title = s.getGenre().toLowerCase();
-            if(title.contains(searchInput)){
-                searchResults.add(s);
-            }
-        }
-        if(searchResults.isEmpty()){
-            ui.displayMsg("No results.");
-            streamingService.homeMenu();
-        }
-        ui.displayMsg("Results: \n");
-        for(Media s :searchResults){
-            System.out.println(counter +". " + s.getMediaTitle());
-            counter++;
-        }
 
-        int userChoice = ui.promptNumeric("Type a number to view details");
-
-        displayMediaInformation(searchResults.get(userChoice-1));
+    public void watchlistInteraction(User currentUser) {
+        this.currentUser = currentUser;
+        medialistInteraction(currentUser, currentUser.getWatchlist(), "watchlist");
     }
 
     public void prevWatchedlistInteraction(User currentUser) {
         this.currentUser = currentUser;
-        if (currentUser.getPrevWatched().isEmpty()) {
-        ui.displayMsg("Your watchlist is empty.");
-        streamingService.homeMenu();  // Go back to the home menu if the watchlist is empty
-        return;
+        medialistInteraction(currentUser, currentUser.getPrevWatched(), "previously watched list");
     }
-        ui.displayMsg("Your Watchlist:"); // Viser ens watchlist med et nummer foran.
-        int counter = 1;
-        for (Media media : currentUser.getPrevWatched()) {
-        ui.displayMsg(counter + ". " + media.getMediaTitle() + " (" + media.getReleaseYear() +")");
-        counter++;
-    }
-
-    int userChoice = ui.promptNumeric("Choose a movie/series number to start watching, or 0 to go back");
-
-        if (userChoice == 0) {
-        ui.displayMsg("Going back...");
-        streamingService.homeMenu();
-    } else if (userChoice > 0 && userChoice <= currentUser.getPrevWatched().size()) {
-        Media chosenMedia = currentUser.getPrevWatched().get(userChoice - 1); // Det nummer som brugeren skrev (-1) er det index i arraylisten.
-        PlayMedia(chosenMedia);
-    } else {
-        ui.displayMsg("Invalid choice, going back...");
-        prevWatchedlistInteraction(currentUser);  // Rekursiv kald, så brugeren må vælge igen.
-    }
-}
 }
