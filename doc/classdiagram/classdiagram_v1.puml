@@ -33,11 +33,13 @@ class MediaManager {
 - ArrayList<Series> series
 + MediaManager(ui, io, User currentUser, movieDataPath, seriesDataPath)
 + void searchByTitle(User currentUser)
++ void searchByGenre()
 + void displayMediaInformation(Media media)
 + void playMedia()
-+ void searchByGenre()
 - void addToWatchlist(Media media)
++ void medialistInteraction(User currentUser, List<Media> mediaList, String listName)
 + void watchlistInteraction(User currentUser)
++ void prevWatchedlistInteraction(User currentUser)
 }
 
 class User {
