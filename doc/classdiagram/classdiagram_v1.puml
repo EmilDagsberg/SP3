@@ -90,10 +90,6 @@ class FileIO {
 + void SaveUserData(String userAsText, String path)
 + void saveMediaList(String username, ArrayList<Media> watchlist, String listType)
 + ArrayList<Media> loadMediaList(String username, String listType)
-+ void saveWatchlist(String username, ArrayList<Media> watchlist
-+ ArrayList<Media> loadWatchlist(String username)
-+ void savePrevWatched(String username, ArrayList<Media> prevWatched)
-+ ArrayList<Media> loadPrevWatched(String username)
 }
 
 class TextUI {

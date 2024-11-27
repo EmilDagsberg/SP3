@@ -147,22 +147,6 @@ public class FileIO {
         }
         return mediaList;
     }
-
-    public void saveWatchlist(String username, ArrayList<Media> watchlist) {
-        saveMediaList(username, watchlist, "watchlist");
-    }
-
-    public ArrayList<Media> loadWatchlist(String username) {
-        return loadMediaList(username, "watchlist");
-    }
-
-    public void savePrevWatched(String username, ArrayList<Media> prevWatched) {
-        saveMediaList(username, prevWatched, "prevWatchedlist");
-    }
-
-    public ArrayList<Media> loadPrevWatched(String username) {
-        return loadMediaList(username, "prevWatchedlist");
-    }
 }
 
 

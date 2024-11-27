@@ -25,7 +25,7 @@ public class User {
         if(!watchlist.contains(media)) {
             watchlist.add(media);
             ui.displayMsg("Movie/Series added to your watchlist: " + media.getMediaTitle());
-            io.saveWatchlist(this.username, this.watchlist); // gemmer så mediet i users unikke watchlistfil
+            io.saveMediaList(this.username, this.watchlist, "watchlist"); // gemmer så mediet i users unikke watchlistfil
         } else {
             ui.displayMsg("This media is already in the watchlist");
         }
@@ -33,7 +33,7 @@ public class User {
 
     public void addToPrevWatchedList(Media media) {
         prevWatched.add(media);
-        io.savePrevWatched(this.username, this.prevWatched);
+        io.saveMediaList(this.username, this.prevWatched, "prevWatchedlist");
     }
 
     public String getUsername() {

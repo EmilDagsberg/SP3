@@ -83,12 +83,12 @@ public class StreamingService {
     }
 
     public void loadWatchlist() {
-        ArrayList<Media> watchlist = io.loadWatchlist(currentUser.getUsername());
+        ArrayList<Media> watchlist = io.loadMediaList(currentUser.getUsername(), "watchlist");
         currentUser.watchlist = watchlist; // Den loade watchlist bliver sat til watchlisten. Så data bliver gemt selv efter lukning af program.
     }
 
     public void loadPrevWatched() {
-        ArrayList<Media> prevWatchedlist = io.loadPrevWatched(currentUser.getUsername());
+        ArrayList<Media> prevWatchedlist = io.loadMediaList(currentUser.getUsername(), "prevWatchedlist");
         currentUser.prevWatched = prevWatchedlist;
     }
 
