@@ -3,4 +3,6 @@ movie; The Godfather part II; 1974; Crime, Drama; 9.0
 series; Twin Peaks; 1990-1991; Crime, Drama, Mystery; 8.8; 1-8, 2-22
 series; Dexter; 2006-2013; Crime, Drama, Mystery; 8.7; 1-12, 2-12, 3-12, 4-12, 5-12, 6-12, 7-12,8-12
 series; Twin Peaks; 1990-1991; Crime, Drama, Mystery; 8.8; 1-8, 2-22
-movie; Jurassic Park;  1993;  Adventure, Sci-fi, Thriller; 8.1
+movie; Jurassic Park; 1993; Adventure, Sci-fi, Thriller; 8.1
+series; The Punisher; 2017; Action, Adventure, Crime; 8.6; 1-13
+series; Sex & The City; 1998-2004; Comedy, Drama, Romance; 7.1; 1-12, 2-18, 3-18, 4-18, 5-8, 6-20

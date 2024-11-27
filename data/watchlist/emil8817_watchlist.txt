@@ -2,3 +2,5 @@ movie; The Godfather; 1972; Crime, Drama; 9.2
 series; Twin Peaks; 1990-1991; Crime, Drama, Mystery; 8.8; 1-8, 2-22
 series; Game Of Thrones; 2011-; Action, Adventure, Drama; 9.5; 1-10, 2-10, 3-10, 4-10, 5-10, 6-10, 7-7
 movie; Lord Of The Rings - The Return Of The King; 2003; Action, Adventure, Drama; 8.9
+series; Dexter; 2006-2013; Crime, Drama, Mystery; 8.7; 1-12, 2-12, 3-12, 4-12, 5-12, 6-12, 7-12,8-12
+series; Three's Company; 1976-1984; Comedy; 7.6; 1-6, 2-25, 3-22, 4-25, 5-22, 6-28, 7-22, 8-22

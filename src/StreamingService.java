@@ -19,7 +19,6 @@ public class StreamingService {
         this.seriesDataPath = "data/serier.txt";
         this.userDataPath = "data/userData.csv";
         this.userData = io.readUserData(this.userDataPath);
-        this.manager = new MediaManager(ui, io, movieDataPath, seriesDataPath, this);
     }
 
     void startStreamingService() {
@@ -95,20 +94,21 @@ public class StreamingService {
     public void homeMenu() {
         loadWatchlist(); // Loader watchlisten med det samme, så hvis man adder en ny film, så bliver det ikke overwritet
         loadPrevWatched();
+        this.manager = new MediaManager(ui, io, movieDataPath, seriesDataPath, this, currentUser);
         int choice = ui.displayHomeMenu("Type number:");
         switch (choice) {
             case 1:
-                manager.searchByTitle(this.currentUser);
+                manager.searchByTitle();
                 break;
             case 2:
                 manager.searchByGenre();
                 ui.displayMsg("Searching genre");
                 break;
             case 3:
-                manager.prevWatchedlistInteraction(this.currentUser);
+                manager.prevWatchedlistInteraction();
                 break;
             case 4:
-                manager.watchlistInteraction(currentUser);
+                manager.watchlistInteraction();
                 break;
             case 5:
                 ui.displayMsg("Logging out...");

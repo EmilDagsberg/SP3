@@ -10,16 +10,16 @@ public class MediaManager {
     private StreamingService streamingService;
 
 
-    MediaManager(TextUI ui, FileIO io, String movieDataPath, String seriesDataPath, StreamingService streamingService) {
+    MediaManager(TextUI ui, FileIO io, String movieDataPath, String seriesDataPath, StreamingService streamingService, User currentUser) {
         this.ui = ui;
         this.io = io;
         this.movies = io.readMovieData(movieDataPath);
         this.series = io.readSeriesData(seriesDataPath);
         this.streamingService = streamingService;
+        this.currentUser = currentUser;
     }
 
-    public void searchByTitle(User currentUser) {
-        this.currentUser = currentUser;
+    public void searchByTitle() {
         String searchInput = ui.promptText("Searching by title. Enter your searchword:");
         ArrayList<Media> searchResults = new ArrayList<Media>(); //list to contain results from search
         int counter = 1;
@@ -98,6 +98,7 @@ public class MediaManager {
             case 3:
                 ui.displayMsg("Going back to Home menu");
                 streamingService.homeMenu();
+                break;
             default:
                 ui.displayMsg("Invalid choice. Going back...");
                 streamingService.homeMenu();
@@ -113,7 +114,7 @@ public class MediaManager {
     }
 
 
-    public void medialistInteraction(User currentUser, List<Media> mediaList, String listName) {
+    public void medialistInteraction(List<Media> mediaList, String listName) {
         if (mediaList.isEmpty()) {
             ui.displayMsg("Your " + listName + " is empty.");
             streamingService.homeMenu();  // Go back to the home menu if the watchlist is empty
@@ -136,17 +137,15 @@ public class MediaManager {
             PlayMedia(chosenMedia);
         } else {
             ui.displayMsg("Invalid choice, going back...");
-            medialistInteraction(currentUser, mediaList, listName);  // Rekursiv kald, så brugeren må vælge igen.
+            medialistInteraction(mediaList, listName);  // Rekursiv kald, så brugeren må vælge igen.
         }
     }
 
-    public void watchlistInteraction(User currentUser) {
-        this.currentUser = currentUser;
-        medialistInteraction(currentUser, currentUser.getWatchlist(), "watchlist");
+    public void watchlistInteraction() {
+        medialistInteraction(currentUser.getWatchlist(), "watchlist");
     }
 
-    public void prevWatchedlistInteraction(User currentUser) {
-        this.currentUser = currentUser;
-        medialistInteraction(currentUser, currentUser.getPrevWatched(), "previously watched list");
+    public void prevWatchedlistInteraction() {
+        medialistInteraction(currentUser.getPrevWatched(), "previously watched list");
     }
 }
