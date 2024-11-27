@@ -1,0 +1,2 @@
+series; Californication; 2007-2014; Comedy, Drama; 8.3; 1-12, 2-12, 3-12, 4-12, 5-12, 6-12, 7-12
+movie; Schindler's List;  1993;  Biography, Drama, History; 8.9

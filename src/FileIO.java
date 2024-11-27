@@ -105,8 +105,8 @@ public class FileIO {
         }
     }
 
-    public void saveWatchlist(String username, ArrayList<Media> watchlist) {
-        try (FileWriter writer = new FileWriter("data/watchlistData/" + username + "_watchlist.txt", false)) {
+    public void saveMediaList(String username, ArrayList<Media> watchlist, String listType) {
+        try (FileWriter writer = new FileWriter("data/" + listType + "/" + username + "_" + listType + ".txt", false)) {
             for (Media media : watchlist) {
                 if(media instanceof Movie) {
                     writer.write("movie; " + media.getMediaTitle() + "; " + media.getReleaseYear() + "; " + media.getGenre() + "; " + media.getRating() + "\n");
@@ -120,93 +120,49 @@ public class FileIO {
         }
     }
 
-    public ArrayList<Media> loadWatchlist(String username) {
+    public ArrayList<Media> loadMediaList(String username, String listType) {
         // Ligesom vi gør i load film og serieData. Her løber jeg tidligere watchlistdata. Laver nye objekter med dem. Og smider dem i et nyt array.
         // Som så bliver til currentUsers.
-        String type;
-        String title;
-        String releaseYear;
-        String genres;
-        Double rating;
-        String seasonsAndEpisodes;
-        ArrayList<Media> watchlist = new ArrayList();
-        File file = new File("data/watchlistData/" + username + "_watchlist.txt");
+        ArrayList<Media> mediaList = new ArrayList();
+        File file = new File("data/" + listType + "/" + username + "_" + listType + ".txt");
 
         try (Scanner scan = new Scanner(file)){
             while(scan.hasNextLine()) {
                 String line = scan.nextLine();
                 String[] data = line.split(";");
-                type = data[0].trim();
-                title = data[1].trim();
-                releaseYear = data[2].trim();
-                genres = data[3].trim();
-                rating = Double.valueOf(data[4].trim());
+                String type = data[0].trim();
+                String title = data[1].trim();
+                String releaseYear = data[2].trim();
+                String genres = data[3].trim();
+                Double rating = Double.valueOf(data[4].trim());
                 if(type.equalsIgnoreCase("movie")) {
-                    Media media = new Movie(title, releaseYear, genres, rating);
-                    watchlist.add(media);
+                    mediaList.add(new Movie(title, releaseYear, genres, rating));
                 } else if(type.equalsIgnoreCase("series")) {
-                    seasonsAndEpisodes = data[5].trim();
-                    Media media = new Series(title, releaseYear, genres, rating, seasonsAndEpisodes);
-                    watchlist.add(media);
+                    String seasonsAndEpisodes = data[5].trim();
+                    mediaList.add(new Series(title, releaseYear, genres, rating, seasonsAndEpisodes));
                 }
                 }
         } catch (FileNotFoundException e) {
             //System.out.println("Watchlist was not found");
         }
-        return watchlist;
+        return mediaList;
+    }
+
+    public void saveWatchlist(String username, ArrayList<Media> watchlist) {
+        saveMediaList(username, watchlist, "watchlistData");
+    }
+
+    public ArrayList<Media> loadWatchlist(String username) {
+        return loadMediaList(username, "watchlistData");
     }
 
     public void savePrevWatched(String username, ArrayList<Media> prevWatched) {
-        try (FileWriter writer = new FileWriter("data/prevWatchedlistData/" + username + "_prevWatchedlist.txt", false)) {
-            for (Media media : prevWatched) {
-                if(media instanceof Movie) {
-                    writer.write("movie; " + media.getMediaTitle() + "; " + media.getReleaseYear() + "; " + media.getGenre() + "; " + media.getRating() + "\n");
-                }
-                if(media instanceof Series) {
-                    writer.write("series; " + media.getMediaTitle() + "; " + media.getReleaseYear() + "; " + media.getGenre() + "; " + media.getRating() + "; " + media.getSeasonsAndEpisodes() + "\n");
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        saveMediaList(username, prevWatched, "prevWatchedlistData");
     }
 
     public ArrayList<Media> loadPrevWatched(String username) {
-        // Ligesom vi gør i load film og serieData. Her løber jeg tidligere watchlistdata. Laver nye objekter med dem. Og smider dem i et nyt array.
-        // Som så bliver til currentUsers.
-        String type;
-        String title;
-        String releaseYear;
-        String genres;
-        Double rating;
-        String seasonsAndEpisodes;
-        ArrayList<Media> watchlist = new ArrayList();
-        File file = new File("data/prevWatchedlistData/" + username + "_prevWatchedlist.txt");
-
-        try (Scanner scan = new Scanner(file)){
-            while(scan.hasNextLine()) {
-                String line = scan.nextLine();
-                String[] data = line.split(";");
-                type = data[0].trim();
-                title = data[1].trim();
-                releaseYear = data[2].trim();
-                genres = data[3].trim();
-                rating = Double.valueOf(data[4].trim());
-                if(type.equalsIgnoreCase("movie")) {
-                    Media media = new Movie(title, releaseYear, genres, rating);
-                    watchlist.add(media);
-                } else if(type.equalsIgnoreCase("series")) {
-                    seasonsAndEpisodes = data[5].trim();
-                    Media media = new Series(title, releaseYear, genres, rating, seasonsAndEpisodes);
-                    watchlist.add(media);
-                }
-            }
-        } catch (FileNotFoundException e) {
-            //System.out.println("Watchlist was not found");
-        }
-        return watchlist;
+        return loadMediaList(username, "prevWatchedlistData");
     }
-
 }
 
 
