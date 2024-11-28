@@ -11,7 +11,7 @@ public class Series extends Media {
             "ReleaseYear: " + this.releaseYear + "\n" +
             "Genre: " + this.genre + "\n" +
             "Rating: " + this.rating + "\n" +
-            "SeasonsAndEpisodes: " + this.seasonsAndEpisodes;
+            "Seasons and Episodes: " + this.seasonsAndEpisodes;
     }
 
     @Override
