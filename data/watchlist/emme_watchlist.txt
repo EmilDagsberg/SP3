@@ -1,0 +1,4 @@
+movie; Lord Of The Rings - The Return Of The King; 2003; Action, Adventure, Drama; 8.9
+movie; Pulp Fiction; 1994; Crime, Drama; 8.9
+series; Dexter; 2006-2013; Crime, Drama, Mystery; 8.7; 1-12, 2-12, 3-12, 4-12, 5-12, 6-12, 7-12,8-12
+series; Justified; 2010-2015; Action, Crime, Drama; 8.6; 1-13, 2-13, 3-13, 4-13, 5-13, 6-13
