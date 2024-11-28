@@ -21,6 +21,7 @@ class StreamingService{
 - void addUser(User u)
 - void loadUserData()
 - void loadWatchlist()
+- void loadPrevWatched()
 - void homeMenu()
 
 
@@ -31,15 +32,15 @@ class MediaManager {
 - FileIO
 - ArrayList<Movies> movies
 - ArrayList<Series> series
-+ MediaManager(ui, io, User currentUser, movieDataPath, seriesDataPath)
+- User currentUser
+- StreamingService streamingService
++ MediaManager(ui, io, User currentUser, String movieDataPath, String seriesDataPath, StreamingService streamingService)
 + void searchByTitle(User currentUser)
 + void searchByGenre()
 + void displayMediaInformation(Media media)
 + void playMedia()
 - void addToWatchlist(Media media)
 + void medialistInteraction(User currentUser, List<Media> mediaList, String listName)
-+ void watchlistInteraction(User currentUser)
-+ void prevWatchedlistInteraction(User currentUser)
 }
 
 class User {
@@ -50,8 +51,10 @@ class User {
 + User(String username, String password)
 + String toString()
 + void addToWatchlist(Media media)
-+ String getusername()
+- void addToPrevWatchedList(Media media)
++ String getUsername()
 + ArrayList<Media> getWatchlist()
++ ArrayList<Media> getPrevWatched()
 }
 
 
@@ -72,15 +75,16 @@ abstract class Media{
 
 class Movie{
 + Movie(String mediaTitle, String releaseYear, String genre, double rating)
-+String toString()
-'metode der loader liste over film?
-
++ String toString()
++ boolean equals(Object o)
++ int hashcode()
 }
 
 class Series{
 +Series(String mediaTitle, String releaseYear, String genre, double rating, String seasonAndEpisodes)
 +String toString()
-'metode der loader liste over serier?
++ boolean equals(Object o)
++ int hashcode()
 }
 
 class FileIO {

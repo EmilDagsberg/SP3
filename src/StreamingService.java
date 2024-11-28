@@ -105,10 +105,10 @@ public class StreamingService {
                 ui.displayMsg("Searching genre");
                 break;
             case 3:
-                manager.prevWatchedlistInteraction();
+                manager.medialistInteraction(currentUser.getPrevWatched(), "previously watched list");
                 break;
             case 4:
-                manager.watchlistInteraction();
+                manager.medialistInteraction(currentUser.getWatchlist(), "watchlist");
                 break;
             case 5:
                 ui.displayMsg("Logging out...");

@@ -140,12 +140,4 @@ public class MediaManager {
             medialistInteraction(mediaList, listName);  // Rekursiv kald, så brugeren må vælge igen.
         }
     }
-
-    public void watchlistInteraction() {
-        medialistInteraction(currentUser.getWatchlist(), "watchlist");
-    }
-
-    public void prevWatchedlistInteraction() {
-        medialistInteraction(currentUser.getPrevWatched(), "previously watched list");
-    }
 }
