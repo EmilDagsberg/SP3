@@ -31,12 +31,13 @@ public class FileIO {
         return data;
     }
 
-    public static ArrayList<Movie> readMovieData(String path) {
+    public static <T>ArrayList<T> readMediaData(String path, String mediaType) {
+        // T i Arraylisten gør at den kan holde forskellige typer i listen. Så arraylisten kan holde både Movie og Series.
         String title;
         String releaseYear;
         String genres;
         double rating;
-        ArrayList<Movie> movieData = new ArrayList();
+        ArrayList<T> mediaData = new ArrayList<>();
         File file = new File(path);
         try {
             Scanner scan = new Scanner(file);
@@ -53,46 +54,20 @@ public class FileIO {
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-                Movie newMovie = new Movie(title, releaseYear, genres, rating);
-                movieData.add(newMovie);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("File was not found");
-        }
-        return movieData;
-    }
+                if(mediaType.equalsIgnoreCase("Movie")) {
+                    Movie newMovie = new Movie(title, releaseYear, genres, rating);
+                    mediaData.add((T) newMovie);
+                } else if(mediaType.equalsIgnoreCase("Series")) {
+                    String seasonsAndEpisodes = data[4].trim();
+                    Series newSeries = new Series(title, releaseYear, genres, rating, seasonsAndEpisodes);
+                    mediaData.add((T) newSeries);
+                }
 
-    public static ArrayList<Series> readSeriesData(String path) {
-        String title;
-        String releaseYear;
-        String genres;
-        double rating;
-        String seasonsAndEpisodes;
-        ArrayList<Series> seriesData = new ArrayList();
-        File file = new File(path);
-        try {
-            Scanner scan = new Scanner(file);
-            scan.nextLine();//skip header
-            while (scan.hasNextLine()) {
-                String line = scan.nextLine(); // "title; release year; etc."
-                String[] data = line.split(";"); //splits a line into 4 Strings containing Title/ReleaseYear/Genres/Rating"
-                title = data[0].trim();
-                releaseYear = data[1].trim();
-                genres = (data[2].trim());
-                try {
-                    String newRating = data[3].trim().replace(',', '.');
-                    rating = Double.valueOf(newRating);
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                seasonsAndEpisodes = data[4].trim();
-                Series newSeries = new Series(title, releaseYear, genres, rating, seasonsAndEpisodes);
-                seriesData.add(newSeries);
             }
         } catch (FileNotFoundException e) {
             System.out.println("File was not found");
         }
-        return seriesData;
+        return mediaData;
     }
 
     public static void SaveUserData(String userAsText, String path) {

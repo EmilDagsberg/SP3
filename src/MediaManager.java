@@ -13,8 +13,8 @@ public class MediaManager {
     MediaManager(TextUI ui, FileIO io, String movieDataPath, String seriesDataPath, StreamingService streamingService, User currentUser) {
         this.ui = ui;
         this.io = io;
-        this.movies = io.readMovieData(movieDataPath);
-        this.series = io.readSeriesData(seriesDataPath);
+        this.movies = io.readMediaData(movieDataPath, "Movie");
+        this.series = io.readMediaData(seriesDataPath, "Series");
         this.streamingService = streamingService;
         this.currentUser = currentUser;
     }
