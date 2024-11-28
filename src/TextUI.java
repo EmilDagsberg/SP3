@@ -10,7 +10,7 @@ public class TextUI {
     }
 
     public int displayHomeMenu(String msg) {
-        displayMsg("1. Find movie or series. \n2. Search genre. \n3. See previously watched movies and series. \n4. See watchlist. \n5. Log out");
+        displayMsg("1. Find a movie or series \n2. Search genre \n3. See previously watched movies and series \n4. See watchlist \n5. Log out");
         int choice = promptNumeric(msg);
         return choice;
     }

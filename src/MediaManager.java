@@ -84,7 +84,7 @@ public class MediaManager {
     public void displayMediaInformation(Media media) {
         ui.displayMsg(media.toString());
 
-        int choice = ui.promptNumeric("What do you want to do?\n1. Watch movie\n2. Add to watchlist\n3. Go back");
+        int choice = ui.promptNumeric("What do you want to do?\n1. Watch now\n2. Add to watchlist\n3. Go back");
 
         switch (choice) {
             case 1:
@@ -108,7 +108,7 @@ public class MediaManager {
     public void PlayMedia(Media media) {
         ui.displayMsg("You are now watching: " + media.getMediaTitle());
         currentUser.addToPrevWatchedList(media);
-        ui.displayMsg("You have finished watching");
+        ui.displayMsg("You have finished watching \n");
         streamingService.homeMenu();
 
     }
