@@ -117,11 +117,11 @@ public class MediaManager {
                 displayMediaInformation(media);
                 break;
             case 2:
-                ui.displayMsg("You have stopped watching " + media.getMediaTitle() + "\n");
+                ui.displayMsg("You have stopped watching " + media.getMediaTitle() + "\n\nHome Menu:");
                 streamingService.homeMenu();
                 break;
             case 3:
-                ui.displayMsg("\nHome Menu:");
+                ui.displayMsg("You have stopped watching " + media.getMediaTitle() + "\n\nHome Menu:");
                 streamingService.homeMenu();
                 break;
             case 4:
@@ -133,8 +133,7 @@ public class MediaManager {
         }
 
     }
-
-
+    
     public void medialistInteraction(List<Media> mediaList, String listName) {
         if (mediaList.isEmpty()) {
             ui.displayMsg("Your " + listName + " is empty.");
