@@ -84,7 +84,7 @@ public class MediaManager {
     public void displayMediaInformation(Media media) {
         ui.displayMsg(media.toString());
 
-        int choice = ui.promptNumeric("What do you want to do?\n1. Watch now\n2. Add to watchlist\n3. Go back");
+        int choice = ui.promptNumeric("\nWhat do you want to do?\n1. ⏵ Watch now\n2. + Add to watchlist\n3. ⌂ Go back home");
 
         switch (choice) {
             case 1:
@@ -92,11 +92,11 @@ public class MediaManager {
                 break;
             case 2:
                 currentUser.addToWatchlist(media);
-                ui.displayMsg("Going back...");
+                ui.displayMsg("\nHome Menu:");
                 streamingService.homeMenu();
                 break;
             case 3:
-                ui.displayMsg("Going back to Home menu");
+                ui.displayMsg("\nHome Menu:");
                 streamingService.homeMenu();
                 break;
             default:
@@ -106,10 +106,31 @@ public class MediaManager {
     }
 
     public void PlayMedia(Media media) {
-        ui.displayMsg("You are now watching: " + media.getMediaTitle());
+        ui.displayMsg("\n" + "You are now watching: " + media.getMediaTitle());
         currentUser.addToPrevWatchedList(media);
-        ui.displayMsg("You have finished watching \n");
-        streamingService.homeMenu();
+
+        int choice = ui.promptNumeric("What do you want to do?\n1. ⏸ Pause\n2. ⏹ Stop\n3. ⌂ Home Menu\n4. ℹ Info");
+
+        switch (choice) {
+            case 1:
+                ui.displayMsg("You have paused " + media.getMediaTitle() + "\n");
+                displayMediaInformation(media);
+                break;
+            case 2:
+                ui.displayMsg("You have stopped watching " + media.getMediaTitle() + "\n");
+                streamingService.homeMenu();
+                break;
+            case 3:
+                ui.displayMsg("\nHome Menu:");
+                streamingService.homeMenu();
+                break;
+            case 4:
+                displayMediaInformation(media);
+                break;
+            default:
+                ui.displayMsg("Invalid choice. Going back...");
+                streamingService.homeMenu();
+        }
 
     }
 
